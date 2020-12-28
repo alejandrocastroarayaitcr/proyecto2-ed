@@ -1,0 +1,44 @@
+#include "Clases.h"
+
+Nodo::Nodo(){
+	setSiguiente(NULL);
+	setID(0);
+	setName(NULL);
+	setPrimeraArista(NULL);
+	setGraphX(0);
+	setGraphY(0);
+	setGraphW(0);
+	setGraphH(0);
+}
+
+pNodo Nodo::getSiguiente(){return this->siguiente;}
+
+short int Nodo::getID(){return this->ID;}
+
+string Nodo::getName(){return this->name;}
+
+pArista Nodo::getPrimeraArista(){return this->primeraArista;}
+
+short int Nodo::getGraphX(){return this->graphX;}
+
+short int Nodo::getGraphY(){return this->graphY;}
+
+short int Nodo::getGraphW(){return this->graphW;}
+
+short int Nodo::getGraphH(){return this->graphH;}
+
+void Nodo::setSiguiente(pNodo nodo){this->siguiente = nodo;}
+
+void Nodo::setID(short int ID){this->ID = ID;}
+
+void Nodo::setName(string pName){this->name = pName;}
+
+void Nodo::setPrimeraArista(pArista arista){this->primeraArista = arista;}
+
+void Nodo::setGraphX(short int x){this->graphX = x;}
+
+void Nodo::setGraphY(short int y){this->graphY = y;}
+
+void Nodo::setGraphW(short int width){this->graphW = width;}
+
+void Nodo::setGraphH(short int height){this->graphH = height;}
