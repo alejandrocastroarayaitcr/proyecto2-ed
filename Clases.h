@@ -34,6 +34,7 @@ private:
 	short int graphH;
 public:
 	Nodo();
+	~Nodo();
 	Nodo* getSiguiente();
 	short int getID();
 	string getName();
@@ -52,4 +53,23 @@ public:
 	void setGraphH(short int height);
 };
 typedef Nodo* pNodo;
+
+class ListaAdyacencia {
+private:
+	pNodo primero;
+private:
+	void cargarGrafo();
+	void guardarGrafo();
+public:
+	ListaAdyacencia();
+	~ListaAdyacencia();
+	pNodo getPrimero();
+	void setPrimero(pNodo nodo);
+	void cargarKGML();
+	void verRutas();
+	void compararRutas();
+	void inspeccionar();
+	void generarGrafico();
+};
+typedef ListaAdyacencia* pListaAdyacencia;
 #endif

@@ -3,12 +3,21 @@
 Nodo::Nodo(){
 	setSiguiente(NULL);
 	setID(0);
-	setName(NULL);
+	setName("");
 	setPrimeraArista(NULL);
 	setGraphX(0);
 	setGraphY(0);
 	setGraphW(0);
 	setGraphH(0);
+}
+
+Nodo::~Nodo(){
+	pArista aux;
+	while(this->primeraArista){
+		aux = getPrimeraArista();
+		this->primeraArista = this->primeraArista->getSiguiente();
+		delete aux;
+	}
 }
 
 pNodo Nodo::getSiguiente(){return this->siguiente;}
