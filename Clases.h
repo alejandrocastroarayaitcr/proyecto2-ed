@@ -78,7 +78,7 @@ typedef ListaAdyacencia* pListaAdyacencia;
 class FileManager {
 public:
 	FileManager();
-	void leerArchivo();
+	void leerArchivo(string filename);
 };
 	
 #endif

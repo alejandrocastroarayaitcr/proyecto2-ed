@@ -6,8 +6,12 @@
 using namespace std;
 
 int main(){
+	string filename;
+	cout << "Escriba el nombre del archivo: ";
+	cin >> filename;
+	
 	FileManager manager;
-	manager.leerArchivo();
+	manager.leerArchivo(filename);
 	cout << "Prueba de main" << endl;
 
 }

@@ -7,12 +7,9 @@ FileManager::FileManager(){
 
 }
 
-void FileManager::leerArchivo(){
-	string filename;
+void FileManager::leerArchivo(string filename){
 	ifstream input;
 	
-	cout << "Escriba el nombre del archivo: ";
-	cin >> filename;
 	input.open(filename.c_str());
 	while (input.fail()){
 		input.clear();
