@@ -2,6 +2,8 @@
 #define CLASES_H_
 
 #include <iostream>
+#include <fstream>
+#include <string>
 
 using namespace std;
 
@@ -72,4 +74,11 @@ public:
 	void generarGrafico();
 };
 typedef ListaAdyacencia* pListaAdyacencia;
+
+class FileManager {
+public:
+	FileManager();
+	void leerArchivo();
+};
+	
 #endif
