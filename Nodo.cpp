@@ -7,6 +7,7 @@ Nodo::Nodo(){
 	setType("");
 	setLink("");
 	setReaction("");
+	setVisitado(false);
 	setPrimeraArista(NULL);
 	setGraphX(0);
 	setGraphY(0);
@@ -35,6 +36,8 @@ string Nodo::getLink(){return this->link;}
 
 string Nodo::getReaction(){return this->reaction;}
 
+bool Nodo::getVisitado(){return this->visitado;}
+
 pArista Nodo::getPrimeraArista(){return this->primeraArista;}
 
 short int Nodo::getGraphX(){return this->graphX;}
@@ -56,6 +59,8 @@ void Nodo::setType(string pType){this->type = pType;}
 void Nodo::setLink(string pLink){this->link = pLink;}
 
 void Nodo::setReaction(string pReaction){this->reaction = pReaction;}
+
+void Nodo::setVisitado(bool pVisitado){this->visitado = pVisitado;}
 
 void Nodo::setPrimeraArista(pArista arista){this->primeraArista = arista;}
 

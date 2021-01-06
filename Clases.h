@@ -32,6 +32,7 @@ private:
 	string type;
 	string link;
 	string reaction;
+	bool visitado;
 	pArista primeraArista;
 	short int graphX;
 	short int graphY;
@@ -46,6 +47,7 @@ public:
 	string getType();
 	string getLink();
 	string getReaction();
+	bool getVisitado();
 	pArista getPrimeraArista();
 	short int getGraphX();
 	short int getGraphY();
@@ -56,6 +58,7 @@ public:
 	void setName(string pName);
 	void setType(string pType);
 	void setLink(string pLink);
+	void setVisitado(bool pVisitado);
 	void setReaction(string pReaction);
 	void setPrimeraArista(pArista arista);
 	void setGraphX(short int x);
@@ -76,6 +79,7 @@ private:
 private:
 	void cargarGrafo();
 	void guardarGrafo();
+	void putAllNotVisitados();
 public:
 	ListaAdyacencia();
 	~ListaAdyacencia();
