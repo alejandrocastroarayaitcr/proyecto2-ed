@@ -22,7 +22,7 @@ void mostrar_menu(){ // Esta funcion muestra el menu del programa
 void registrarKGML(){
 	
 	string filename;
-	cout << "Escriba el nombre del archivo: " << std::flush;
+	cout << "\nEscriba el nombre del archivo: " << std::flush;
 	cin >> filename;
 	
 	FileManager manager;
@@ -43,7 +43,7 @@ int main(){
 				//case '5': modo_inspeccionar(); break;
 				case '6': exit(1);
 				default:
-					printf( "Opción no válida\n" );
+					printf( "\nOpción no válida. Por favor intente de nuevo.\n" );
 						break;
 		}
 	} while (opcion!='8');
