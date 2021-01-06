@@ -4,6 +4,9 @@ Nodo::Nodo(){
 	setSiguiente(NULL);
 	setID(0);
 	setName("");
+	setType("");
+	setLink("");
+	setReaction("");
 	setPrimeraArista(NULL);
 	setGraphX(0);
 	setGraphY(0);
@@ -26,6 +29,12 @@ short int Nodo::getID(){return this->ID;}
 
 string Nodo::getName(){return this->name;}
 
+string Nodo::getType(){return this->type;}
+
+string Nodo::getLink(){return this->link;}
+
+string Nodo::getReaction(){return this->reaction;}
+
 pArista Nodo::getPrimeraArista(){return this->primeraArista;}
 
 short int Nodo::getGraphX(){return this->graphX;}
@@ -41,6 +50,12 @@ void Nodo::setSiguiente(pNodo nodo){this->siguiente = nodo;}
 void Nodo::setID(short int ID){this->ID = ID;}
 
 void Nodo::setName(string pName){this->name = pName;}
+
+void Nodo::setType(string pType){this->type = pType;}
+
+void Nodo::setLink(string pLink){this->link = pLink;}
+
+void Nodo::setReaction(string pReaction){this->reaction = pReaction;}
 
 void Nodo::setPrimeraArista(pArista arista){this->primeraArista = arista;}
 

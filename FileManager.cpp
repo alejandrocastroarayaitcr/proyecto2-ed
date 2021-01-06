@@ -18,11 +18,36 @@ void FileManager::leerArchivo(string filename){
 		input.open(filename.c_str());
 	}
 		
-		string output;
+		string line;
+		string temp;
+		ListaAdyacencia raizGrafo;
+		pNodo nodo = new Nodo;
 		fstream myfile;
 		
 		myfile.open(filename);
-		std::cout << std::ifstream(filename).rdbuf();
+		
+		while(std::getline(myfile, line)){
+			
+			if (line.find("pathway") != string::npos){
+				
+				if (line.find("name") != string::npos){	// se pone el nombre de la ruta al grafo de la ruta
+					int startPos = line.find("name");	// necesito hacer esto para todos los elementos necesarios del grafo usando algun tipo de loop
+					temp = line.substr(startPos+11);
+					int endPos = temp.find('"');
+					string finalString = temp.substr(0,endPos);
+					raizGrafo.setName(finalString);
+					std::cout << raizGrafo.getName() << std::endl;
+					break;
+					}
+				
+			}
+			
+		}
+			
+			
+		
+		
+		
 		myfile.close();
 	input.close();
 	

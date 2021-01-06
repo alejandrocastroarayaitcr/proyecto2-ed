@@ -32,6 +32,12 @@ void registrarKGML(){
 
 int main(){
 	char opcion;
+	ListaAdyacencia raiz;
+	pNodo nodo = new Nodo;
+	nodo->setName("hola");
+	raiz.setPrimero(nodo);
+	cout << raiz.getPrimero()->getName();
+
 	do {
 		mostrar_menu();
 		cin >> opcion;
