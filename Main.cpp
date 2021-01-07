@@ -5,6 +5,8 @@
 
 using namespace std;
 
+deque<ListaAdyacencia> listaRutas; //Lista principal de las rutas
+
 void mostrar_menu(){ // Esta funcion muestra el menu del programa
 	
 	cout << "\n\t\tMenú:\n================================" << endl;
@@ -19,6 +21,13 @@ void mostrar_menu(){ // Esta funcion muestra el menu del programa
 	
 }
 
+pListaAdyacencia buscarRuta(string pNombre){
+	for(unsigned int i=0; i<listaRutas.size(); i++){
+		if(listaRutas.at(i).getName() == pNombre)return listaRutas.at(i);
+	}
+	return NULL;
+}
+
 void registrarKGML(){
 	
 	string filename;
@@ -28,6 +37,31 @@ void registrarKGML(){
 	FileManager manager;
 	manager.leerArchivo(filename);
 	
+}
+
+void comparar_rutas(){
+	string nombreRuta1, nombreRuta2;
+	cout << "\nEscriba el nombre de la primera ruta: " << std::flush;
+	cin >> ruta1;
+	cout << "\nEscriba el nombre de la segunda ruta: " << std::flush;
+	cin >> ruta2;
+	pListaAdyacencia ruta1, ruta2;
+	ruta1 = buscarRuta(nombreRuta1);
+	ruta2 = buscarRuta(nombreRuta2);
+	if(ruta1 == NULL || ruta2 == NULL){
+		cout << "No se encontró una de las rutas" << endl;
+	}else{
+		deque<pNodo> rutaLineal1, rutaLineal2;
+		rutaLineal1 = ruta1->makeLineal();
+		rutaLineal2 = ruta2->makeLineal();
+		/*Algoritmo 1
+		  transformar rutas
+		  alineamiento
+		*/
+	}
+	/*Algoritmo 2
+	  
+	*/
 }
 
 int main(){

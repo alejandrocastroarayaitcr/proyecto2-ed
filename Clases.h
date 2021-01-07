@@ -97,7 +97,7 @@ public:
 	void setImage(string image);
 	void cargarKGML();
 	void verRutas();
-	void compararRutas();
+	deque<pNodo> makeLineal();
 	void inspeccionar();
 	void generarGrafico();
 };

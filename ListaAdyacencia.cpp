@@ -20,6 +20,9 @@ void ListaAdyacencia::cargarGrafo(){}
 
 void ListaAdyacencia::guardarGrafo(){}
 
+/*Cambia todos los nodos a "no visitados" para empezar
+  con los recorridos
+*/
 void ListaAdyacencia::putAllNotVisitados(){
 	pNodo aux = this->getPrimero();;
 	while(aux != NULL){
@@ -56,7 +59,25 @@ void ListaAdyacencia::cargarKGML(){}
 
 void ListaAdyacencia::verRutas(){}
 
-void ListaAdyacencia::compararRutas(){}
+deque<pNodo> ListaAdyacencia::makeLineal(){
+	deque<pNodo> cola;
+	putAllNotVisitados();
+	cola.push_back(this->getPrimero());
+	this->getPrimero()->setVisitado(true);
+	int contador = 0;
+	while(contador != cola.size()){
+		pNodo auxNodo = cola.front();
+		pArista auxArista = auxNodo->getPrimeraArista();
+		while(auxArista!=NULL){
+			if(!auxArista->getDestino()->getVisitado()){
+				cola.push_back(auxArista->getDestino());
+				auxArista->getDestino()->setVisitado(true);
+			}
+			auxArista = auxArista->getSiguiente();
+		}
+	}
+	return cola;
+}
 
 void ListaAdyacencia::inspeccionar(){}
 
