@@ -38,7 +38,7 @@ void registrarKGML(){
 	manager.leerArchivo(filename);
 	
 }
-
+/*
 void comparar_rutas(){
 	string nombreRuta1, nombreRuta2;
 	cout << "\nEscriba el nombre de la primera ruta: " << std::flush;
@@ -54,15 +54,26 @@ void comparar_rutas(){
 		deque<pNodo> rutaLineal1, rutaLineal2;
 		rutaLineal1 = ruta1->makeLineal();
 		rutaLineal2 = ruta2->makeLineal();
+		if(rutaLineal1.size() < rutaLineal2.size()){
+			short int matriz[rutaLineal2.size()][rutaLineal1.size()];
+		}else{
+			short int matriz[rutaLineal1.size()][rutaLineal2.size()];
+		}
+		matriz[0][0] = 0;
+		
+		for(){
+			
+			
+		}
 		/*Algoritmo 1
-		  transformar rutas
 		  alineamiento
-		*/
+		
 	}
 	/*Algoritmo 2
 	  
-	*/
+	
 }
+*/
 
 int main(){
 	char opcion;
