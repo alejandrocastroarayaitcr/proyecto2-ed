@@ -5,6 +5,7 @@
 #include <fstream>
 #include <string>
 #include <deque>
+#include <vector>
 
 using namespace std;
 
@@ -110,7 +111,7 @@ typedef ListaAdyacencia* pListaAdyacencia;
 class FileManager {
 public:
 	FileManager();
-	void leerArchivo(string filename);
+	void leerArchivo(string filename, vector<ListaAdyacencia> lista);
 };
 	
 #endif

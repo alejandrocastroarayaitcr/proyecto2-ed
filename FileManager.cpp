@@ -2,12 +2,13 @@
 #include <fstream>
 #include <iostream>
 #include <string>
+#include <vector>
 
 FileManager::FileManager(){
 
 }
 
-void FileManager::leerArchivo(string filename){
+void FileManager::leerArchivo(string filename, vector <ListaAdyacencia> lista){
 	ifstream input;
 	
 	input.open(filename.c_str());
@@ -23,6 +24,7 @@ void FileManager::leerArchivo(string filename){
 		string temp;
 		ListaAdyacencia raizGrafo;
 		pNodo nodo = new Nodo;
+		raizGrafo.setPrimero(nodo);
 		fstream myfile;
 		
 		myfile.open(filename);
@@ -86,7 +88,7 @@ void FileManager::leerArchivo(string filename){
 			}
 			
 		}
-			
+		lista.push_back(raizGrafo);
 			
 		std::cout << "\nRuta agregada. Datos de la ruta:\n" << std::endl;
 		std::cout << "Nombre: ";
@@ -103,7 +105,7 @@ void FileManager::leerArchivo(string filename){
 		std::cout << raizGrafo.getLink() << std::endl;
 		
 		myfile.close();
-	input.close();
+	    input.close();
 	
 return;
 }
