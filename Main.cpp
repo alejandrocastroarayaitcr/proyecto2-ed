@@ -49,27 +49,31 @@ void comparar_rutas(){
 	ruta1 = buscarRuta(nombreRuta1);
 	ruta2 = buscarRuta(nombreRuta2);
 	if(ruta1 == NULL || ruta2 == NULL){
-		cout << "No se encontró una de las rutas" << endl;
+		cout << "No se encontró ruta con el nombre ingresado" << endl;
 	}else{
 		deque<pNodo> rutaLineal1, rutaLineal2;
 		rutaLineal1 = ruta1->makeLineal();
 		rutaLineal2 = ruta2->makeLineal();
 		if(rutaLineal1.size() < rutaLineal2.size()){
-			short int matriz[rutaLineal2.size()][rutaLineal1.size()];
-		}else{
-			short int matriz[rutaLineal1.size()][rutaLineal2.size()];
+			deque<pNodo> temp;
+			temp = rutaLineal1;
+			rutaLineal1 = rutaLineal2;
+			rutaLineal2 = temp;
 		}
+		short int matriz[rutaLineal2.size()+1][rutaLineal1.size()+1];
 		matriz[0][0] = 0;
-		
-		for(){
-			
-			
+		for(int i=1;i<rutaLineal1.size()){
+			matriz[0][i] = 0;
 		}
-		/*Algoritmo 1
+		for(int i=1;i<rutaLineal2.size()){
+			matriz[i][0] = 0;
+		}
+		
+		Algoritmo 1
 		  alineamiento
 		
 	}
-	/*Algoritmo 2
+	Algoritmo 2
 	  
 	
 }
