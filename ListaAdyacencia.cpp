@@ -43,6 +43,8 @@ string ListaAdyacencia::getTitle(){return this->title;}
 
 string ListaAdyacencia::getImage(){return this->image;}
 
+string ListaAdyacencia::getLink(){return this->link;}
+
 void ListaAdyacencia::setPrimero(pNodo nodo){this->primero = nodo;}
 
 void ListaAdyacencia::setName(string name){this->name = name;}
@@ -54,6 +56,8 @@ void ListaAdyacencia::setNumber(string number){this->number = number;}
 void ListaAdyacencia::setTitle(string title){this->title = title;}
 
 void ListaAdyacencia::setImage(string image){this->image = image;}
+
+void ListaAdyacencia::setLink(string link){this->link = link;}
 
 void ListaAdyacencia::cargarKGML(){}
 

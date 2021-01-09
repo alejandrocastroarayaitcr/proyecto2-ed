@@ -4,6 +4,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <deque>
 
 using namespace std;
 
@@ -76,6 +77,7 @@ private:
 	string number;
 	string title;
 	string image;
+	string link;
 private:
 	void cargarGrafo();
 	void guardarGrafo();
@@ -89,12 +91,14 @@ public:
 	string getNumber();
 	string getTitle();
 	string getImage();
+	string getLink();
 	void setPrimero(pNodo nodo);
 	void setName(string name);
 	void setOrg(string org);
 	void setNumber(string number);
 	void setTitle(string title);
 	void setImage(string image);
+	void setLink(string link);
 	void cargarKGML();
 	void verRutas();
 	deque<pNodo> makeLineal();
