@@ -25,6 +25,8 @@ void FileManager::leerArchivo(string filename, deque <pListaAdyacencia> lista){
 		pListaAdyacencia raizGrafo = new ListaAdyacencia;
 		//pArista arista = new Arista;
 		pNodo nodo = new Nodo;
+		pNodo nodoNuevo = 0;
+		pArista newArista = 0;
 		raizGrafo->setPrimero(nodo);
 		//raizGrafo->getPrimero()->setPrimeraArista(arista);
 		pNodo nodoTemp = raizGrafo->getPrimero();
@@ -99,8 +101,6 @@ void FileManager::leerArchivo(string filename, deque <pListaAdyacencia> lista){
 				int endPos = temp.find('"');
 				string finalString = temp.substr(0,endPos);
 				nodoTemp->setID(finalString);
-				string strNodo = nodoTemp->getID();
-				cout << strNodo << std::endl;
 				
 				line = lineOriginal;
 				startPos = line.find("name");
@@ -108,8 +108,6 @@ void FileManager::leerArchivo(string filename, deque <pListaAdyacencia> lista){
 				endPos =  temp.find('"');
 				finalString = temp.substr(0,endPos);
 				nodoTemp->setName(finalString);
-				strNodo = nodoTemp->getName();
-				cout << strNodo << std::endl;
 				
 				line = lineOriginal;
 				startPos = line.find("type");
@@ -117,8 +115,6 @@ void FileManager::leerArchivo(string filename, deque <pListaAdyacencia> lista){
 				endPos = temp.find('"');
 				finalString = temp.substr(0,endPos);
 				nodoTemp->setType(finalString);
-				strNodo = nodoTemp->getType();
-				cout << strNodo << std::endl;
 				
 				if (line.find("reaction") == string::npos){
 					nodoTemp->setReaction("No tiene reaccion");
@@ -130,8 +126,6 @@ void FileManager::leerArchivo(string filename, deque <pListaAdyacencia> lista){
 					endPos = temp.find('"');
 					finalString = temp.substr(0,endPos);
 					nodoTemp->setReaction(finalString);
-					strNodo = nodoTemp->getReaction();
-					cout << strNodo << std::endl;
 				}
 				
 				
@@ -144,8 +138,6 @@ void FileManager::leerArchivo(string filename, deque <pListaAdyacencia> lista){
 				int endPos =  temp.find('"');
 				string finalString = temp.substr(0,endPos);
 				nodoTemp->setLink(finalString);
-				string strNodo = nodoTemp->getLink();
-				cout << strNodo << std::endl;
 				line = lineOriginal;
 			}
 			
@@ -157,8 +149,6 @@ void FileManager::leerArchivo(string filename, deque <pListaAdyacencia> lista){
 				int endPos = temp.find('"');
 				string finalString = temp.substr(0,endPos);
 				nodoTemp->setGraphicsName(finalString);
-				string strNodo = nodoTemp->getGraphicsName();
-				cout << strNodo << std::endl;
 				
 				line = lineOriginal;
 				startPos = line.find("fgcolor");
@@ -166,8 +156,6 @@ void FileManager::leerArchivo(string filename, deque <pListaAdyacencia> lista){
 				endPos =  temp.find('"');
 				finalString = temp.substr(0,endPos);
 				nodoTemp->setFgColor(finalString);
-			    strNodo = nodoTemp->getFgColor();
-				cout << strNodo << std::endl;
 				
 				line = lineOriginal;
 				startPos = line.find("bgcolor");
@@ -175,8 +163,6 @@ void FileManager::leerArchivo(string filename, deque <pListaAdyacencia> lista){
 				endPos = temp.find('"');
 				finalString = temp.substr(0,endPos);
 				nodoTemp->setBgColor(finalString);
-				strNodo = nodoTemp->getBgColor();
-				cout << strNodo << std::endl;
 				
 			}
 			
@@ -188,8 +174,6 @@ void FileManager::leerArchivo(string filename, deque <pListaAdyacencia> lista){
 				int endPos = temp.find('"');
 				string finalString = temp.substr(0,endPos);
 				nodoTemp->setGraphicsType(finalString);
-				string strNodo = nodoTemp->getGraphicsType();
-				cout << strNodo << std::endl;
 				
 				line = lineOriginal;
 				startPos = line.find("x=");
@@ -197,8 +181,6 @@ void FileManager::leerArchivo(string filename, deque <pListaAdyacencia> lista){
 				endPos =  temp.find('"');
 				finalString = temp.substr(0,endPos);
 				nodoTemp->setGraphX(stoi(finalString));
-			    int intNodo = nodoTemp->getGraphX();
-				cout << intNodo << std::endl;
 				
 				line = lineOriginal;
 				startPos = line.find("y=");
@@ -206,8 +188,6 @@ void FileManager::leerArchivo(string filename, deque <pListaAdyacencia> lista){
 				endPos =  temp.find('"');
 				finalString = temp.substr(0,endPos);
 				nodoTemp->setGraphY(stoi(finalString));
-				intNodo = nodoTemp->getGraphY();
-				cout << intNodo << std::endl;
 				
 				line = lineOriginal;
 				startPos = line.find("width=");
@@ -215,8 +195,6 @@ void FileManager::leerArchivo(string filename, deque <pListaAdyacencia> lista){
 				endPos =  temp.find('"');
 				finalString = temp.substr(0,endPos);
 				nodoTemp->setGraphW(stoi(finalString));
-				intNodo = nodoTemp->getGraphW();
-				cout << intNodo << std::endl;
 				
 				line = lineOriginal;
 				startPos = line.find("height=");
@@ -224,13 +202,11 @@ void FileManager::leerArchivo(string filename, deque <pListaAdyacencia> lista){
 				endPos =  temp.find('"');
 				finalString = temp.substr(0,endPos);
 				nodoTemp->setGraphH(stoi(finalString));
-				intNodo = nodoTemp->getGraphH();
-				cout << intNodo << std::endl;
 				
 				cout << "\nNodo agregado. Datos del nodo:\n" << std::endl;
 				
 				cout << "Numero de identificacion: ";
-				strNodo = nodoTemp->getID();
+				string strNodo = nodoTemp->getID();
 				cout << strNodo << std::endl;
 				
 				cout << "Nombre: ";
@@ -270,68 +246,73 @@ void FileManager::leerArchivo(string filename, deque <pListaAdyacencia> lista){
 				cout << "Altura: ";
 				cout << nodoTemp->getGraphH() << std::endl;
 				
-				pNodo nodoNuevo = new Nodo;
+				nodoNuevo = new Nodo;
 				nodoTemp->setSiguiente(nodoNuevo);
 				nodoTemp = nodoTemp->getSiguiente();
-				//pArista aristaNuevo = new Arista;
-				//aristaTemp->setSiguiente(aristaNuevo);
-				//aristaTemp = aristaTemp->getSiguiente();
-				//nodoTemp->setPrimeraArista(aristaTemp);
+				nodoTemp->setSiguiente(NULL);
 			}
 
 			if (line.find("relation entry") != string::npos){
 				nodoTemp = raizGrafo->getPrimero();	// se resetea la posicion del nodo auxiliar para poder revisar todos los nodos para ponerle el arista apropiado a su nodo respectivo
 				nodoTemp2 = raizGrafo->getPrimero();
-				cout << nodoTemp->getName() << std::endl;
-				cout << nodoTemp2->getName() << std::endl;
 				
 				lineOriginal = line;
 				int startPos = line.find("entry1=");
 				temp = line.substr(startPos + 8);
 				int endPos = temp.find('"');
 				string entry1 = temp.substr(0,endPos);
-				cout << entry1 << std::endl;
 				
 				line = lineOriginal;
 				startPos = line.find("entry2=");
 				temp = line.substr(startPos + 8);
 				endPos =  temp.find('"');
 				string entry2 = temp.substr(0,endPos);
-				cout << entry2 << std::endl;
 				
 				line = lineOriginal;
 				startPos = line.find("type=");
 				temp = line.substr(startPos + 6);
 				endPos = temp.find('"');
 				string aristaType = temp.substr(0,endPos);
-				cout << aristaType << std::endl;
 				
 				while (nodoTemp->getName() != ""){
-					//cout  << "prueba" <<  std::endl;
 					
 					if (nodoTemp->getID() == entry1){
-						pArista newArista = new Arista;
-						nodoTemp->setPrimeraArista(newArista);
+						
+						if (nodoTemp->getPrimeraArista() == NULL){
+							
+							newArista = new Arista;
+							nodoTemp->setPrimeraArista(newArista);
+							nodoTemp->getPrimeraArista()->setSiguiente(NULL);
+						}
+						
+						pArista tempArista = nodoTemp->getPrimeraArista();
+						
+						while (tempArista->getSiguiente() != NULL){
+								
+							tempArista = tempArista->getSiguiente();
+							
+						}
+							
+						newArista = new Arista;
+						tempArista->setSiguiente(newArista);
+							
 						
 						while (nodoTemp2->getName() != ""){
 							
 							if (nodoTemp2->getID() == entry2){
-								nodoTemp->getPrimeraArista()->setDestino(nodoTemp2);
-								nodoTemp->getPrimeraArista()->setType(aristaType);
+								tempArista->setDestino(nodoTemp2);
+								tempArista->setType(aristaType);
 								break;
 							}
 							
 							nodoTemp2 = nodoTemp2->getSiguiente();
 						}
-						//aristaTemp->setDestino(nodoTemp);
-						cout << "Destino puesto." << std::endl;
+
 						break;
 					}
 					
 					nodoTemp = nodoTemp->getSiguiente();
 				}
-				
-				cout << "break out of the truth" << std::endl;
 
 			}
 			
@@ -343,8 +324,6 @@ void FileManager::leerArchivo(string filename, deque <pListaAdyacencia> lista){
 				int endPos = temp.find('"');
 				string finalString = temp.substr(0,endPos);
 				nodoTemp->getPrimeraArista()->setSubType(finalString);
-				string strNodo = nodoTemp->getPrimeraArista()->getSubType();
-				cout << strNodo << std::endl;
 				
 				line = lineOriginal;
 				startPos = line.find("value=");
@@ -352,14 +331,11 @@ void FileManager::leerArchivo(string filename, deque <pListaAdyacencia> lista){
 				endPos =  temp.find('"');
 				finalString = temp.substr(0,endPos);
 				nodoTemp->getPrimeraArista()->setValue(finalString);
-				strNodo = nodoTemp->getPrimeraArista()->getValue();
-				cout << strNodo << std::endl;
 
-				break;
 			}
 			
 		}
-		lista.emplace_back(raizGrafo);
+		lista.push_back(raizGrafo);
 			
 		std::cout << "\nRuta agregada. Datos de la ruta:\n" << std::endl;
 		std::cout << "Nombre: ";

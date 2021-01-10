@@ -2,11 +2,11 @@
 #include <iostream>
 #include <fstream>
 #include <string>
-#include <vector>
 
 using namespace std;
 
 deque<pListaAdyacencia> listaRutas; //Lista principal de las rutas
+
 
 void mostrar_menu(){ // Esta funcion muestra el menu del programa
 	
@@ -80,19 +80,20 @@ void comparar_rutas(){
 }
 */
 
+void ver_rutas(deque<pListaAdyacencia> listaRutas){
+	
+	cout << listaRutas.at(0)->getName() <<  endl; // prueba
+}
+
 int main(){
 	char opcion;
-	pListaAdyacencia raiz = new ListaAdyacencia;
-	pNodo nodo = new Nodo;
-	raiz->setPrimero(nodo);
-
 
 	do {
 		mostrar_menu();
 		cin >> opcion;
 			switch ( opcion ) { // Usa un switch para elegir que sucede dependiendo de la opcion escogida
 				case '1': registrarKGML(listaRutas); break;
-				//case '2': ver_rutas(); break;
+				case '2': ver_rutas(listaRutas); break;
 				//case '3': comparar_rutas(); break;
 				//case '4': generar_grafico(); break;
 				//case '5': modo_inspeccionar(); break;
