@@ -351,6 +351,18 @@ void FileManager::leerArchivo(string filename, deque <pListaAdyacencia> lista){
 		std::cout << "Link: ";
 		std::cout << raizGrafo->getLink() << std::endl;
 		
+		delete raizGrafo;
+		raizGrafo = 0;
+		
+		nodo = 0;
+		delete nodo;
+		
+		nodoNuevo = 0;
+		delete nodoNuevo;
+		
+		newArista = 0;
+		delete newArista;
+		
 		myfile.close();
 	    input.close();
 	
