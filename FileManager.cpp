@@ -278,9 +278,60 @@ void FileManager::leerArchivo(string filename, deque <pListaAdyacencia> lista){
 				nodoTemp = raizGrafo->getPrimero();	// se resetea la posicion del nodo auxiliar para poder revisar todos los nodos para ponerle el arista apropiado a su nodo respectivo
 				cout << nodoTemp->getName() << std::endl;
 				
+				lineOriginal = line;
+				int startPos = line.find("entry1=");
+				temp = line.substr(startPos + 8);
+				int endPos = temp.find('"');
+				string finalString = temp.substr(0,endPos);
+				aristaTemp->setID1(finalString);
+				string strNodo = aristaTemp->getID1();
+				cout << strNodo << std::endl;
 				
+				line = lineOriginal;
+				startPos = line.find("entry2=");
+				temp = line.substr(startPos + 8);
+				endPos =  temp.find('"');
+				finalString = temp.substr(0,endPos);
+				aristaTemp->setID2(finalString);
+				strNodo = aristaTemp->getID2();
+				cout << strNodo << std::endl;
+				
+				while (nodoTemp->getName() != ""){
+					//cout  << "prueba" <<  std::endl;
+					
+					if (nodoTemp->getID() == aristaTemp->getID2()){
+						aristaTemp->setDestino(nodoTemp);
+						cout << "Destino puesto." << std::endl;
+					}
+					
+					nodoTemp = nodoTemp->getSiguiente();
+				}
 				break;
+
+			}
+			
+			if (line.find("subtype name") != string::npos){
+				nodoTemp = raizGrafo->getPrimero();	// se resetea la posicion del nodo auxiliar para poder revisar todos los nodos para ponerle el arista apropiado a su nodo respectivo
 				
+				lineOriginal = line;
+				int startPos = line.find("name=");
+				temp = line.substr(startPos + 6);
+				int endPos = temp.find('"');
+				string finalString = temp.substr(0,endPos);
+				aristaTemp->setSubType(finalString);
+				string strNodo = aristaTemp->getSubType();
+				cout << strNodo << std::endl;
+				
+				line = lineOriginal;
+				startPos = line.find("value=");
+				temp = line.substr(startPos + 7);
+				endPos =  temp.find('"');
+				finalString = temp.substr(0,endPos);
+				aristaTemp->setValue(finalString);
+				strNodo = aristaTemp->getValue();
+				cout << strNodo << std::endl;
+
+				break;
 			}
 			
 		}

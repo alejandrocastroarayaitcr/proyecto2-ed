@@ -14,6 +14,8 @@ private:
 	string ID1;
 	string ID2;
 	string type;
+	string subType;
+	string value;
 	class Nodo* destino;
 public:
 	Arista();
@@ -21,11 +23,15 @@ public:
 	string getID1();
 	string getID2();
 	string getType();
+	string getSubType();
+	string getValue();
 	class Nodo* getDestino();
 	void setSiguiente(Arista* arista);
 	void setID1(string ID1);
 	void setID2(string ID2);
 	void setType(string type);
+	void setSubType(string subType);
+	void setValue(string value);
 	void setDestino(class Nodo* nodo);
 friend class Nodo;
 };
