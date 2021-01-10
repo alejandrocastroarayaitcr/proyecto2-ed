@@ -6,7 +6,7 @@
 
 using namespace std;
 
-deque<ListaAdyacencia> listaRutas; //Lista principal de las rutas
+deque<pListaAdyacencia> listaRutas; //Lista principal de las rutas
 
 void mostrar_menu(){ // Esta funcion muestra el menu del programa
 	
@@ -24,12 +24,12 @@ void mostrar_menu(){ // Esta funcion muestra el menu del programa
 
 pListaAdyacencia buscarRuta(string pNombre){
 	for(unsigned int i=0; i<listaRutas.size(); i++){
-		if(listaRutas.at(i).getName() == pNombre)return &listaRutas.at(i);
+		if(listaRutas.at(i)->getName() == pNombre)return listaRutas.at(i);
 	}
 	return NULL;
 }
 
-void registrarKGML(deque<ListaAdyacencia> lista){
+void registrarKGML(deque<pListaAdyacencia> lista){
 	
 	string filename;
 	cout << "\nEscriba el nombre del archivo: " << std::flush;
@@ -82,9 +82,10 @@ void comparar_rutas(){
 
 int main(){
 	char opcion;
-	ListaAdyacencia raiz;
+	pListaAdyacencia raiz = new ListaAdyacencia;
 	pNodo nodo = new Nodo;
-	raiz.setPrimero(nodo);
+	raiz->setPrimero(nodo);
+
 
 	do {
 		mostrar_menu();

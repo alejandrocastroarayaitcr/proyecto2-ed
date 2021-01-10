@@ -8,7 +8,7 @@ FileManager::FileManager(){
 
 }
 
-void FileManager::leerArchivo(string filename, deque <ListaAdyacencia> lista){
+void FileManager::leerArchivo(string filename, deque <pListaAdyacencia> lista){
 	ifstream input;
 	
 	input.open(filename.c_str());
@@ -22,10 +22,10 @@ void FileManager::leerArchivo(string filename, deque <ListaAdyacencia> lista){
 		string line;
 		string lineOriginal;
 		string temp;
-		ListaAdyacencia raizGrafo;
+		pListaAdyacencia raizGrafo = new ListaAdyacencia;
 		pNodo nodo = new Nodo;
-		raizGrafo.setPrimero(nodo);
-		pNodo nodoTemp = raizGrafo.getPrimero();
+		raizGrafo->setPrimero(nodo);
+		pNodo nodoTemp = raizGrafo->getPrimero();
 		fstream myfile;
 		
 		myfile.open(filename);
@@ -40,21 +40,21 @@ void FileManager::leerArchivo(string filename, deque <ListaAdyacencia> lista){
 					temp = line.substr(startPos+6);
 					int endPos = temp.find('"');
 					string finalString = temp.substr(0,endPos);
-					raizGrafo.setName(finalString);
+					raizGrafo->setName(finalString);
 					line = lineOriginal;
 					
 					startPos = line.find("org");
 					temp = line.substr(startPos+5);
 					endPos = temp.find('"');
 					finalString = temp.substr(0,endPos);
-					raizGrafo.setOrg(finalString);
+					raizGrafo->setOrg(finalString);
 					line = lineOriginal;
 					
 					startPos = line.find("number");
 					temp = line.substr(startPos+8);
 					endPos = temp.find('"');
 					finalString = temp.substr(0,endPos);
-					raizGrafo.setNumber(finalString);
+					raizGrafo->setNumber(finalString);
 			}
 			
 			if (line.find("title") != string::npos){
@@ -64,7 +64,7 @@ void FileManager::leerArchivo(string filename, deque <ListaAdyacencia> lista){
 				temp = line.substr(startPos+7);
 				int endPos = temp.find('"');
 				string finalString = temp.substr(0,endPos);
-				raizGrafo.setTitle(finalString);
+				raizGrafo->setTitle(finalString);
 			}
 			
 			if (line.find("image") != string::npos){
@@ -74,7 +74,7 @@ void FileManager::leerArchivo(string filename, deque <ListaAdyacencia> lista){
 				temp = line.substr(startPos+7);
 				int endPos = temp.find('"');
 				string finalString = temp.substr(0,endPos);
-				raizGrafo.setImage(finalString);
+				raizGrafo->setImage(finalString);
 			}
 			
 			if (line.find("show_pathway") != string::npos){
@@ -84,7 +84,7 @@ void FileManager::leerArchivo(string filename, deque <ListaAdyacencia> lista){
 				temp = line.substr(startPos+6);
 				int endPos = temp.find('"');
 				string finalString = temp.substr(0,endPos);
-				raizGrafo.setLink(finalString);
+				raizGrafo->setLink(finalString);
 			}
 			
 			if (line.find("entry id") != string::npos){
@@ -263,31 +263,32 @@ void FileManager::leerArchivo(string filename, deque <ListaAdyacencia> lista){
 				nodoTemp->setSiguiente(nodoNuevo);
 				nodoTemp = nodoTemp->getSiguiente();
 			}
-			
+
 			if (line.find("relation entry") != string::npos){
+				nodoTemp = 0;
+				delete nodoTemp;
+				//delete nodoTemp;
 				
 				break;
 				
 			}
 			
 		}
-		string pruebaLol = raizGrafo.getPrimero()->getSiguiente()->getName();
-		std::cout << pruebaLol << std::endl;
-		lista.push_back(raizGrafo);
+		lista.emplace_back(raizGrafo);
 			
 		std::cout << "\nRuta agregada. Datos de la ruta:\n" << std::endl;
 		std::cout << "Nombre: ";
-		std::cout << raizGrafo.getName() << std::endl;
+		std::cout << raizGrafo->getName() << std::endl;
 		std::cout << "Org: ";
-		std::cout << raizGrafo.getOrg() << std::endl;
+		std::cout << raizGrafo->getOrg() << std::endl;
 		std::cout << "Numero: ";
-		std::cout << raizGrafo.getNumber() << std::endl;
+		std::cout << raizGrafo->getNumber() << std::endl;
 		std::cout << "Titulo: ";
-		std::cout << raizGrafo.getTitle() << std::endl;
+		std::cout << raizGrafo->getTitle() << std::endl;
 		std::cout << "Imagen: ";
-		std::cout << raizGrafo.getImage() << std::endl;
+		std::cout << raizGrafo->getImage() << std::endl;
 		std::cout << "Link: ";
-		std::cout << raizGrafo.getLink() << std::endl;
+		std::cout << raizGrafo->getLink() << std::endl;
 		
 		myfile.close();
 	    input.close();
