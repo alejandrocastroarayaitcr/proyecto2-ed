@@ -44,6 +44,7 @@ private:
 	string graphicsName;
 	string fgColor;
 	string bgColor;
+	string graphicsType;
 	short int graphX;
 	short int graphY;
 	short int graphW;
@@ -62,6 +63,7 @@ public:
 	string getGraphicsName();
 	string getFgColor();
 	string getBgColor();
+	string getGraphicsType();
 	short int getGraphX();
 	short int getGraphY();
 	short int getGraphW();
@@ -76,6 +78,7 @@ public:
 	void setGraphicsName(string graphicsName);
 	void setFgColor(string fgColor);
 	void setBgColor(string bgColor);
+	void setGraphicsType(string graphicsType);
 	void setType(string type);
 	void setGraphX(short int x);
 	void setGraphY(short int y);

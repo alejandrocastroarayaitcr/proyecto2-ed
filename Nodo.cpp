@@ -12,6 +12,7 @@ Nodo::Nodo(){
 	setGraphicsName("");
 	setFgColor("");
 	setBgColor("");
+	setGraphicsType("");
 	setGraphX(0);
 	setGraphY(0);
 	setGraphW(0);
@@ -49,6 +50,8 @@ string Nodo::getFgColor(){return this->fgColor;}
 
 string Nodo::getBgColor(){return this->bgColor;}
 
+string Nodo::getGraphicsType(){return this->graphicsType;}
+
 short int Nodo::getGraphX(){return this->graphX;}
 
 short int Nodo::getGraphY(){return this->graphY;}
@@ -78,6 +81,8 @@ void Nodo::setGraphicsName(string graphicsName){this->graphicsName = graphicsNam
 void Nodo::setFgColor(string fgColor){this->fgColor = fgColor;}
 
 void Nodo::setBgColor(string bgColor){this->bgColor = bgColor;}
+
+void Nodo::setGraphicsType(string graphicsType){this->graphicsType = graphicsType;}
 
 void Nodo::setGraphX(short int x){this->graphX = x;}
 

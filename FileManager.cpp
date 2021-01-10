@@ -23,9 +23,12 @@ void FileManager::leerArchivo(string filename, deque <pListaAdyacencia> lista){
 		string lineOriginal;
 		string temp;
 		pListaAdyacencia raizGrafo = new ListaAdyacencia;
+		pArista arista = new Arista;
 		pNodo nodo = new Nodo;
 		raizGrafo->setPrimero(nodo);
+		raizGrafo->getPrimero()->setPrimeraArista(arista);
 		pNodo nodoTemp = raizGrafo->getPrimero();
+		pArista aristaTemp = raizGrafo->getPrimero()->getPrimeraArista();
 		fstream myfile;
 		
 		myfile.open(filename);
@@ -116,14 +119,21 @@ void FileManager::leerArchivo(string filename, deque <pListaAdyacencia> lista){
 				strNodo = nodoTemp->getType();
 				cout << strNodo << std::endl;
 				
-				line = lineOriginal;
-				startPos = line.find("reaction");
-				temp = line.substr(startPos + 10);
-				endPos = temp.find('"');
-				finalString = temp.substr(0,endPos);
-				nodoTemp->setReaction(finalString);
-				strNodo = nodoTemp->getReaction();
-				cout << strNodo << std::endl;
+				if (line.find("reaction") == string::npos){
+					nodoTemp->setReaction("No tiene reaccion");
+				}
+				else if (line.find("reaction") != string::npos){
+					line = lineOriginal;
+					startPos = line.find("reaction");
+					temp = line.substr(startPos + 10);
+					endPos = temp.find('"');
+					finalString = temp.substr(0,endPos);
+					nodoTemp->setReaction(finalString);
+					strNodo = nodoTemp->getReaction();
+					cout << strNodo << std::endl;
+				}
+				
+				
 			}
 			
 			if (line.find("show_pathway") == string::npos && line.find("link") != string::npos){
@@ -176,8 +186,8 @@ void FileManager::leerArchivo(string filename, deque <pListaAdyacencia> lista){
 				temp = line.substr(startPos + 6);
 				int endPos = temp.find('"');
 				string finalString = temp.substr(0,endPos);
-				nodoTemp->setType(finalString);
-				string strNodo = nodoTemp->getType();
+				nodoTemp->setGraphicsType(finalString);
+				string strNodo = nodoTemp->getGraphicsType();
 				cout << strNodo << std::endl;
 				
 				line = lineOriginal;
@@ -245,7 +255,7 @@ void FileManager::leerArchivo(string filename, deque <pListaAdyacencia> lista){
 				cout << nodoTemp->getBgColor() << std::endl;
 				
 				cout << "Tipo grafico: ";
-				cout << nodoTemp->getType() << std::endl;
+				cout << nodoTemp->getGraphicsType() << std::endl;
 				
 				cout << "X: ";
 				cout << nodoTemp->getGraphX() << std::endl;
@@ -265,9 +275,10 @@ void FileManager::leerArchivo(string filename, deque <pListaAdyacencia> lista){
 			}
 
 			if (line.find("relation entry") != string::npos){
-				nodoTemp = 0;
-				delete nodoTemp;
+				nodoTemp = raizGrafo->getPrimero();
 				//eliminar el ultimo nodo que se creo con new ya que no tiene datos
+				
+				
 				
 				break;
 				
