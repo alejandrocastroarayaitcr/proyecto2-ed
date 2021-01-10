@@ -82,7 +82,8 @@ void comparar_rutas(){
 
 void ver_rutas(deque<pListaAdyacencia> listaRutas){
 	
-	cout << listaRutas.at(0)->getName() <<  endl; // prueba
+	cout << "Tamano de la lista de grafos: ";
+	cout << listaRutas.size() <<  endl; // prueba
 }
 
 int main(){
