@@ -36,6 +36,9 @@ private:
 	string reaction;
 	bool visitado;
 	pArista primeraArista;
+	string graphicsName;
+	string fgColor;
+	string bgColor;
 	short int graphX;
 	short int graphY;
 	short int graphW;
@@ -51,6 +54,9 @@ public:
 	string getReaction();
 	bool getVisitado();
 	pArista getPrimeraArista();
+	string getGraphicsName();
+	string getFgColor();
+	string getBgColor();
 	short int getGraphX();
 	short int getGraphY();
 	short int getGraphW();
@@ -58,11 +64,14 @@ public:
 	void setSiguiente(Nodo* nodo);
 	void setID(short int ID);
 	void setName(string pName);
-	void setType(string pType);
 	void setLink(string pLink);
 	void setVisitado(bool pVisitado);
 	void setReaction(string pReaction);
 	void setPrimeraArista(pArista arista);
+	void setGraphicsName(string graphicsName);
+	void setFgColor(string fgColor);
+	void setBgColor(string bgColor);
+	void setType(string type);
 	void setGraphX(short int x);
 	void setGraphY(short int y);
 	void setGraphW(short int width);
