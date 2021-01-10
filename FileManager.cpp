@@ -97,9 +97,9 @@ void FileManager::leerArchivo(string filename, deque <pListaAdyacencia> lista){
 				temp = line.substr(startPos + 10);
 				int endPos = temp.find('"');
 				string finalString = temp.substr(0,endPos);
-				nodoTemp->setID(stoi(finalString));
-				int intNodo = nodoTemp->getID();
-				cout << intNodo << std::endl;
+				nodoTemp->setID(finalString);
+				string strNodo = nodoTemp->getID();
+				cout << strNodo << std::endl;
 				
 				line = lineOriginal;
 				startPos = line.find("name");
@@ -107,7 +107,7 @@ void FileManager::leerArchivo(string filename, deque <pListaAdyacencia> lista){
 				endPos =  temp.find('"');
 				finalString = temp.substr(0,endPos);
 				nodoTemp->setName(finalString);
-				string strNodo = nodoTemp->getName();
+				strNodo = nodoTemp->getName();
 				cout << strNodo << std::endl;
 				
 				line = lineOriginal;
@@ -229,8 +229,8 @@ void FileManager::leerArchivo(string filename, deque <pListaAdyacencia> lista){
 				cout << "\nNodo agregado. Datos del nodo:\n" << std::endl;
 				
 				cout << "Numero de identificacion: ";
-				intNodo = nodoTemp->getID();
-				cout << intNodo << std::endl;
+				strNodo = nodoTemp->getID();
+				cout << strNodo << std::endl;
 				
 				cout << "Nombre: ";
 				strNodo = nodoTemp->getName();
@@ -275,9 +275,8 @@ void FileManager::leerArchivo(string filename, deque <pListaAdyacencia> lista){
 			}
 
 			if (line.find("relation entry") != string::npos){
-				nodoTemp = raizGrafo->getPrimero();
-				//eliminar el ultimo nodo que se creo con new ya que no tiene datos
-				
+				nodoTemp = raizGrafo->getPrimero();	// se resetea la posicion del nodo auxiliar para poder revisar todos los nodos para ponerle el arista apropiado a su nodo respectivo
+				cout << nodoTemp->getName() << std::endl;
 				
 				
 				break;

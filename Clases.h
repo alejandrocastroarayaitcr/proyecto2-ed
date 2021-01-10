@@ -11,20 +11,20 @@ using namespace std;
 class Arista {
 private:
 	Arista* siguiente;
-	short int ID1;
-	short int ID2;
+	string ID1;
+	string ID2;
 	string type;
 	class Nodo* destino;
 public:
 	Arista();
 	Arista* getSiguiente();
-	short int getID1();
-	short int getID2();
+	string getID1();
+	string getID2();
 	string getType();
 	class Nodo* getDestino();
 	void setSiguiente(Arista* arista);
-	void setID1(short int ID1);
-	void setID2(short int ID2);
+	void setID1(string ID1);
+	void setID2(string ID2);
 	void setType(string type);
 	void setDestino(class Nodo* nodo);
 friend class Nodo;
@@ -34,7 +34,7 @@ typedef Arista* pArista;
 class Nodo {
 private:
 	Nodo* siguiente;
-	short int ID;
+	string ID;
 	string name;
 	string type;
 	string link;
@@ -53,7 +53,7 @@ public:
 	Nodo();
 	~Nodo();
 	Nodo* getSiguiente();
-	short int getID();
+	string getID();
 	string getName();
 	string getType();
 	string getLink();
@@ -69,7 +69,7 @@ public:
 	short int getGraphW();
 	short int getGraphH();
 	void setSiguiente(Nodo* nodo);
-	void setID(short int ID);
+	void setID(string ID);
 	void setName(string pName);
 	void setLink(string pLink);
 	void setVisitado(bool pVisitado);

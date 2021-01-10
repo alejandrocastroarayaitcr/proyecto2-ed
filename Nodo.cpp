@@ -2,7 +2,7 @@
 
 Nodo::Nodo(){
 	setSiguiente(NULL);
-	setID(0);
+	setID("");
 	setName("");
 	setType("");
 	setLink("");
@@ -30,7 +30,7 @@ Nodo::~Nodo(){
 
 pNodo Nodo::getSiguiente(){return this->siguiente;}
 
-short int Nodo::getID(){return this->ID;}
+string Nodo::getID(){return this->ID;}
 
 string Nodo::getName(){return this->name;}
 
@@ -62,7 +62,7 @@ short int Nodo::getGraphH(){return this->graphH;}
 
 void Nodo::setSiguiente(pNodo nodo){this->siguiente = nodo;}
 
-void Nodo::setID(short int ID){this->ID = ID;}
+void Nodo::setID(string ID){this->ID = ID;}
 
 void Nodo::setName(string pName){this->name = pName;}
 
