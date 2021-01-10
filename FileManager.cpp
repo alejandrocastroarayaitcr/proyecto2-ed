@@ -23,12 +23,13 @@ void FileManager::leerArchivo(string filename, deque <pListaAdyacencia> lista){
 		string lineOriginal;
 		string temp;
 		pListaAdyacencia raizGrafo = new ListaAdyacencia;
-		pArista arista = new Arista;
+		//pArista arista = new Arista;
 		pNodo nodo = new Nodo;
 		raizGrafo->setPrimero(nodo);
-		raizGrafo->getPrimero()->setPrimeraArista(arista);
+		//raizGrafo->getPrimero()->setPrimeraArista(arista);
 		pNodo nodoTemp = raizGrafo->getPrimero();
-		pArista aristaTemp = raizGrafo->getPrimero()->getPrimeraArista();
+		pNodo nodoTemp2 = raizGrafo->getPrimero();
+		//pArista aristaTemp = raizGrafo->getPrimero()->getPrimeraArista();
 		fstream myfile;
 		
 		myfile.open(filename);
@@ -272,54 +273,77 @@ void FileManager::leerArchivo(string filename, deque <pListaAdyacencia> lista){
 				pNodo nodoNuevo = new Nodo;
 				nodoTemp->setSiguiente(nodoNuevo);
 				nodoTemp = nodoTemp->getSiguiente();
+				//pArista aristaNuevo = new Arista;
+				//aristaTemp->setSiguiente(aristaNuevo);
+				//aristaTemp = aristaTemp->getSiguiente();
+				//nodoTemp->setPrimeraArista(aristaTemp);
 			}
 
 			if (line.find("relation entry") != string::npos){
 				nodoTemp = raizGrafo->getPrimero();	// se resetea la posicion del nodo auxiliar para poder revisar todos los nodos para ponerle el arista apropiado a su nodo respectivo
+				nodoTemp2 = raizGrafo->getPrimero();
 				cout << nodoTemp->getName() << std::endl;
+				cout << nodoTemp2->getName() << std::endl;
 				
 				lineOriginal = line;
 				int startPos = line.find("entry1=");
 				temp = line.substr(startPos + 8);
 				int endPos = temp.find('"');
-				string finalString = temp.substr(0,endPos);
-				aristaTemp->setID1(finalString);
-				string strNodo = aristaTemp->getID1();
-				cout << strNodo << std::endl;
+				string entry1 = temp.substr(0,endPos);
+				cout << entry1 << std::endl;
 				
 				line = lineOriginal;
 				startPos = line.find("entry2=");
 				temp = line.substr(startPos + 8);
 				endPos =  temp.find('"');
-				finalString = temp.substr(0,endPos);
-				aristaTemp->setID2(finalString);
-				strNodo = aristaTemp->getID2();
-				cout << strNodo << std::endl;
+				string entry2 = temp.substr(0,endPos);
+				cout << entry2 << std::endl;
+				
+				line = lineOriginal;
+				startPos = line.find("type=");
+				temp = line.substr(startPos + 6);
+				endPos = temp.find('"');
+				string aristaType = temp.substr(0,endPos);
+				cout << aristaType << std::endl;
 				
 				while (nodoTemp->getName() != ""){
 					//cout  << "prueba" <<  std::endl;
 					
-					if (nodoTemp->getID() == aristaTemp->getID2()){
-						aristaTemp->setDestino(nodoTemp);
+					if (nodoTemp->getID() == entry1){
+						pArista newArista = new Arista;
+						nodoTemp->setPrimeraArista(newArista);
+						
+						while (nodoTemp2->getName() != ""){
+							
+							if (nodoTemp2->getID() == entry2){
+								nodoTemp->getPrimeraArista()->setDestino(nodoTemp2);
+								nodoTemp->getPrimeraArista()->setType(aristaType);
+								break;
+							}
+							
+							nodoTemp2 = nodoTemp2->getSiguiente();
+						}
+						//aristaTemp->setDestino(nodoTemp);
 						cout << "Destino puesto." << std::endl;
+						break;
 					}
 					
 					nodoTemp = nodoTemp->getSiguiente();
 				}
-				break;
+				
+				cout << "break out of the truth" << std::endl;
 
 			}
 			
 			if (line.find("subtype name") != string::npos){
-				nodoTemp = raizGrafo->getPrimero();	// se resetea la posicion del nodo auxiliar para poder revisar todos los nodos para ponerle el arista apropiado a su nodo respectivo
 				
 				lineOriginal = line;
 				int startPos = line.find("name=");
 				temp = line.substr(startPos + 6);
 				int endPos = temp.find('"');
 				string finalString = temp.substr(0,endPos);
-				aristaTemp->setSubType(finalString);
-				string strNodo = aristaTemp->getSubType();
+				nodoTemp->getPrimeraArista()->setSubType(finalString);
+				string strNodo = nodoTemp->getPrimeraArista()->getSubType();
 				cout << strNodo << std::endl;
 				
 				line = lineOriginal;
@@ -327,8 +351,8 @@ void FileManager::leerArchivo(string filename, deque <pListaAdyacencia> lista){
 				temp = line.substr(startPos + 7);
 				endPos =  temp.find('"');
 				finalString = temp.substr(0,endPos);
-				aristaTemp->setValue(finalString);
-				strNodo = aristaTemp->getValue();
+				nodoTemp->getPrimeraArista()->setValue(finalString);
+				strNodo = nodoTemp->getPrimeraArista()->getValue();
 				cout << strNodo << std::endl;
 
 				break;
