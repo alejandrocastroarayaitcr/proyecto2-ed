@@ -267,7 +267,7 @@ void FileManager::leerArchivo(string filename, deque <pListaAdyacencia> lista){
 			if (line.find("relation entry") != string::npos){
 				nodoTemp = 0;
 				delete nodoTemp;
-				//delete nodoTemp;
+				//eliminar el ultimo nodo que se creo con new ya que no tiene datos
 				
 				break;
 				

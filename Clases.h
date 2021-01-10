@@ -11,15 +11,21 @@ using namespace std;
 class Arista {
 private:
 	Arista* siguiente;
-	short int ID;
+	short int ID1;
+	short int ID2;
+	string type;
 	class Nodo* destino;
 public:
 	Arista();
 	Arista* getSiguiente();
-	short int getID();
+	short int getID1();
+	short int getID2();
+	string getType();
 	class Nodo* getDestino();
 	void setSiguiente(Arista* arista);
-	void setID(short int ID);
+	void setID1(short int ID1);
+	void setID2(short int ID2);
+	void setType(string type);
 	void setDestino(class Nodo* nodo);
 friend class Nodo;
 };
