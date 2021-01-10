@@ -24,12 +24,12 @@ void mostrar_menu(){ // Esta funcion muestra el menu del programa
 
 pListaAdyacencia buscarRuta(string pNombre){
 	for(unsigned int i=0; i<listaRutas.size(); i++){
-		if(listaRutas.at(i).getName() == pNombre)return listaRutas.at(i);
+		if(listaRutas.at(i).getName() == pNombre)return &listaRutas.at(i);
 	}
 	return NULL;
 }
 
-void registrarKGML(vector<ListaAdyacencia> lista){
+void registrarKGML(deque<ListaAdyacencia> lista){
 	
 	string filename;
 	cout << "\nEscriba el nombre del archivo: " << std::flush;
@@ -82,20 +82,15 @@ void comparar_rutas(){
 
 int main(){
 	char opcion;
-	std::vector<ListaAdyacencia> listaGrafos;
 	ListaAdyacencia raiz;
 	pNodo nodo = new Nodo;
 	raiz.setPrimero(nodo);
-	//raiz.setName("prueba");
-	//listaGrafos.push_back(raiz);
-	//ListaAdyacencia prueba = listaGrafos.at(0);
-	//cout << prueba.getName();
 
 	do {
 		mostrar_menu();
 		cin >> opcion;
 			switch ( opcion ) { // Usa un switch para elegir que sucede dependiendo de la opcion escogida
-				case '1': registrarKGML(listaGrafos); break;
+				case '1': registrarKGML(listaRutas); break;
 				//case '2': ver_rutas(); break;
 				//case '3': comparar_rutas(); break;
 				//case '4': generar_grafico(); break;

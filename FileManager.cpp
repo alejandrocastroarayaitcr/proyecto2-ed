@@ -8,7 +8,7 @@ FileManager::FileManager(){
 
 }
 
-void FileManager::leerArchivo(string filename, vector <ListaAdyacencia> lista){
+void FileManager::leerArchivo(string filename, deque <ListaAdyacencia> lista){
 	ifstream input;
 	
 	input.open(filename.c_str());
@@ -257,7 +257,13 @@ void FileManager::leerArchivo(string filename, vector <ListaAdyacencia> lista){
 				
 				cout << "Altura: ";
 				cout << raizGrafo.getPrimero()->getGraphH() << std::endl;
+				
+			}
+			
+			if (line.find("relation entry") != string::npos){
+				
 				break;
+				
 			}
 			
 		}

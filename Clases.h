@@ -120,7 +120,7 @@ typedef ListaAdyacencia* pListaAdyacencia;
 class FileManager {
 public:
 	FileManager();
-	void leerArchivo(string filename, vector<ListaAdyacencia> lista);
+	void leerArchivo(string filename, deque<ListaAdyacencia> lista);
 };
 	
 #endif
