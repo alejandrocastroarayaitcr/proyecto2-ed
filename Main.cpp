@@ -24,7 +24,7 @@ void mostrar_menu(){ // Esta funcion muestra el menu del programa
 
 pListaAdyacencia buscarRuta(string pNombre){
 	for(unsigned int i=0; i<listaRutas.size(); i++){
-		//if(listaRutas.at(i).getName() == pNombre)return listaRutas.at(i);
+		if(listaRutas.at(i).getName() == pNombre)return listaRutas.at(i);
 	}
 	return NULL;
 }
