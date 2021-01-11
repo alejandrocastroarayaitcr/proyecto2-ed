@@ -38,21 +38,34 @@ pListaAdyacencia FileManager::leerArchivo(string filename, deque <pListaAdyacenc
 		
 		while(std::getline(myfile, line)){
 			
-			if (line.find("pathway name") != string::npos){
+			if (line.find("number") != string::npos){
+				lineOriginal = line;
+				
+					if (line.find("name") == string::npos){
+						
+						string grafoName;
+						cout << "\nNombre de grafo no encontrado. Escriba el nombre: " << std::flush;
+						cin >> grafoName;
+						raizGrafo->setName(grafoName);
+					}
+					
+					else if (line.find("name") != string::npos){
+						
+						lineOriginal = line;
+						int startPos = line.find("name");	// necesito hacer esto para todos los elementos necesarios del grafo usando algun tipo de loop
+						temp = line.substr(startPos+6);
+						int endPos = temp.find('"');
+						string finalString = temp.substr(0,endPos);
+						raizGrafo->setName(finalString);
+						line = lineOriginal;
+					}
 				
 					// se pone el nombre de la ruta al grafo de la ruta
-					lineOriginal = line;
-					int startPos = line.find("name");	// necesito hacer esto para todos los elementos necesarios del grafo usando algun tipo de loop
-					temp = line.substr(startPos+6);
+
+					int startPos = line.find("org");
+					temp = line.substr(startPos+5);
 					int endPos = temp.find('"');
 					string finalString = temp.substr(0,endPos);
-					raizGrafo->setName(finalString);
-					line = lineOriginal;
-					
-					startPos = line.find("org");
-					temp = line.substr(startPos+5);
-					endPos = temp.find('"');
-					finalString = temp.substr(0,endPos);
 					raizGrafo->setOrg(finalString);
 					line = lineOriginal;
 					
@@ -334,6 +347,19 @@ pListaAdyacencia FileManager::leerArchivo(string filename, deque <pListaAdyacenc
 
 			}
 			
+		}
+		char opcion;
+		
+		std::cout << "\nNombre actual de la ruta agregada: " << std::flush;
+		std::cout << raizGrafo->getName() << std::endl;
+		std::cout << "\nDesea modificar el nombre de la ruta agregada? S/N: " << std::flush;
+		cin >> opcion;
+		if (opcion == 's' || opcion == 'S'){
+			
+			string grafoName;
+			cout << "\nEscriba el nombre: " << std::flush;
+			cin >> grafoName;
+			raizGrafo->setName(grafoName);
 		}
 			
 		std::cout << "\nRuta agregada. Datos de la ruta:\n" << std::endl;
