@@ -212,7 +212,6 @@ void ver_rutas(deque<pListaAdyacencia> listaRutas){
 void modo_inspeccionar(deque<pListaAdyacencia> listaRutas){
 	
 	pNodo tempNodo;
-	pArista tempArista;
 	pListaAdyacencia tempGrafo;
 	
 	cout << "\n|--------------------------------Reporte------------------------------------------------|" << endl;
@@ -301,73 +300,80 @@ void modo_inspeccionar(deque<pListaAdyacencia> listaRutas){
 		pNodo nodoTemp = listaRutas.at(i)->getPrimero();
 		while (nodoTemp->getName() != ""){
 			
-			if (nodoTemp->getPrimeraArista() != NULL){
+			pArista aristaTemp = nodoTemp->getPrimeraArista();
+			
+			if (aristaTemp != NULL){
 				
-				pArista aristaTemp = nodoTemp->getPrimeraArista();
-				while (aristaTemp->getID1() != ""){
+				while (aristaTemp != NULL){
+					if (aristaTemp->getSiguiente() == 0){
+						
+						aristaTemp = aristaTemp->getSiguiente();
+					}
 					
-					cout << "|                                                                                       |";
-					cout << "\n|-----------------------------Arista----------------------------------------------------|" << endl;
+					else{
+						
+						cout << "|                                                                                       |";
+					cout << "\n|----------------------------pArista----------------------------------------------------|" << endl;
 					
 					cout << "| Arista: \t" << std::flush;
-					cout << sizeof(tempArista);
+					cout << sizeof(aristaTemp);
 					cout << " bytes\t\t\t\tDireccion hexadecimal -> ";
-					cout << tempArista;
+					cout << aristaTemp;
 					cout << " | " <<  endl;
 					
 					cout << "| siguiente: \t" << std::flush;
-					cout << sizeof(tempArista->getSiguiente());
+					cout << sizeof(aristaTemp->getSiguiente());
 					cout << " bytes\t\t\t\tDireccion hexadecimal -> ";
-					cout << tempArista->getSiguiente();
+					cout << aristaTemp->getSiguiente();
 					cout << " | " <<  endl;
 
 					cout << "| ID1: \t" << std::flush;
-					cout << sizeof(tempArista->getID1());
+					cout << sizeof(aristaTemp->getID1());
 					cout << " bytes\t\t\t\tDireccion hexadecimal -> ";
-					//string aristaString = tempArista->getID1();
-					//cout << aristaString;
+					cout << aristaTemp->getID1();
 					
-					cout << " | " <<  endl;
+					cout << " \t\t| " <<  endl;
 					
 					cout << "| ID2: \t" << std::flush;
-					cout << sizeof(tempArista->getID2());
+					cout << sizeof(aristaTemp->getID2());
 					cout << " bytes\t\t\t\tDireccion hexadecimal -> ";
-	//				aristaString = tempArista->getID2();
-	//				cout << &aristaString;
-					cout << " | " <<  endl;
+					cout << aristaTemp->getID2();
+					cout << " \t\t| " <<  endl;
 					
 					cout << "| type: \t" << std::flush;
-					cout << sizeof(tempArista->getType());
+					cout << sizeof(aristaTemp->getType());
 					cout << " bytes\t\t\tDireccion hexadecimal -> ";
-	//				aristaString = tempArista->getType();
-	//				cout << &aristaString;
-					cout << " | " <<  endl;
+					cout << aristaTemp->getType();
+					cout << " \t\t| " <<  endl;
 					
 					cout << "| subType: \t" << std::flush;
-					cout << sizeof(tempArista->getSubType());
+					cout << sizeof(aristaTemp->getSubType());
 					cout << " bytes\t\t\tDireccion hexadecimal -> ";
-	//				aristaString = tempArista->getSubType();
-	//				cout << &aristaString;
-					cout << " | " <<  endl;
+					cout << aristaTemp->getSubType();
+					cout << " \t| " <<  endl;
 					
 					cout << "| value: \t" << std::flush;
-					cout << sizeof(tempArista->getValue());
+					cout << sizeof(aristaTemp->getValue());
 					cout << " bytes\t\t\tDireccion hexadecimal -> ";
-	//				aristaString = tempArista->getValue();
-	//				cout << &aristaString;
-					cout << " | " <<  endl;
+					cout << aristaTemp->getValue();
+					cout << " \t\t| " <<  endl;
 					
 					cout << "| destino: \t" << std::flush;
-					cout << sizeof(tempArista->getDestino());
+					cout << sizeof(aristaTemp->getDestino());
 					cout << " bytes\t\t\t\tDireccion hexadecimal -> ";
-					pNodo aristaDestino =  tempArista->getDestino();
-					cout << &aristaDestino;
+					cout << aristaTemp->getDestino();
 					cout << " | " <<  endl;
 					
 					cout << "|---------------------------------------------------------------------------------------|" << endl;
 					
 					aristaTemp = aristaTemp->getSiguiente();
+						
+					}
+					
+					
+					
 				}
+				
 			}
 			nodoTemp = nodoTemp->getSiguiente();
 		}
@@ -464,7 +470,7 @@ void modo_inspeccionar(deque<pListaAdyacencia> listaRutas){
 			
 			cout << "| fgColor: \t" << std::flush;
 			cout << sizeof(nodoTemp->getFgColor());
-			cout << " bytes\t\tDireccion hexadecimal -> ";
+			cout << " bytes\t\t\tDireccion hexadecimal -> ";
 			nodoString = nodoTemp->getFgColor();
 			cout << &nodoString;
 			cout << " | " <<  endl;
@@ -522,6 +528,75 @@ void modo_inspeccionar(deque<pListaAdyacencia> listaRutas){
 	cout << "Se ha terminado de desplegar el reporte.\n" << std::endl;
 }
 
+void generar_grafico(deque<pListaAdyacencia> listaRutas){
+	
+	if (listaRutas.size() == 0){
+		
+		cout << "\nLa lista de rutas esta vacia!" << std::endl;
+		return;
+		
+	}
+	
+	string rutaEscogida;
+	
+	cout << "\n";
+	for (int i = 0; i < listaRutas.size(); i++){
+		
+		int numRuta = i + 1;
+		cout << numRuta;
+		cout << ". ";
+		cout << listaRutas.at(i)->getName() << endl;
+		
+	}
+	
+	cout << "\nPor favor escriba el numero de la ruta que desea generar: ";
+	cin >> rutaEscogida;
+	cout << "\n";
+	cout << "Ha escogida la ruta ";
+	cout << rutaEscogida << endl;
+	int rutaInt = stoi(rutaEscogida);
+	rutaInt = rutaInt - 1;
+	
+	cout << "\n";
+	
+	pListaAdyacencia grafo = listaRutas.at(rutaInt);
+	pNodo nodoTemp = grafo->getPrimero();
+	
+	while (nodoTemp->getName() != ""){
+		pArista aristaTemp = nodoTemp->getPrimeraArista();
+		
+		cout << nodoTemp->getName();
+		
+		
+		if (aristaTemp != NULL){
+			
+			while (aristaTemp != NULL){
+				
+				if (aristaTemp->getDestino() == 0){
+					break;
+				}
+				
+				cout << " ---> ";
+				cout << aristaTemp->getDestino()->getName();
+				cout << " | ";
+				
+				aristaTemp = aristaTemp->getSiguiente();
+			}
+			
+			cout << "\n";
+				
+		}
+		else if (aristaTemp == NULL){
+			
+			cout << "\n";
+		}
+		
+		cout << "\n";
+		nodoTemp = nodoTemp->getSiguiente();
+	}
+	
+}
+
 int main(){
 	char opcion;
 
@@ -532,7 +607,7 @@ int main(){
 				case '1': registrarKGML(listaRutas); break;
 				case '2': ver_rutas(listaRutas); break;
 				//case '3': comparar_rutas(listaRutas); break;
-				//case '4': generar_grafico(); break;
+				case '4': generar_grafico(listaRutas); break;
 				case '5': modo_inspeccionar(listaRutas); break;
 				case '6': exit(1);
 				default:
