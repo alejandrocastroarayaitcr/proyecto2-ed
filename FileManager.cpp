@@ -31,6 +31,7 @@ pListaAdyacencia FileManager::leerArchivo(string filename, deque <pListaAdyacenc
 		//raizGrafo->getPrimero()->setPrimeraArista(arista);
 		pNodo nodoTemp = raizGrafo->getPrimero();
 		pNodo nodoTemp2 = raizGrafo->getPrimero();
+		pArista tempArista;
 		//pArista aristaTemp = raizGrafo->getPrimero()->getPrimeraArista();
 		fstream myfile;
 		
@@ -216,8 +217,9 @@ pListaAdyacencia FileManager::leerArchivo(string filename, deque <pListaAdyacenc
 				finalString = temp.substr(0,endPos);
 				nodoTemp->setGraphH(stoi(finalString));
 				
-				cout << "\nNodo agregado. Datos del nodo:\n" << std::endl;
+				cout << "\n\t\t\tNodo agregado:" << std::endl;
 				
+				cout << "-------------------------------------------------------------------" << endl;
 				cout << "Numero de identificacion: ";
 				string strNodo = nodoTemp->getID();
 				cout << strNodo << std::endl;
@@ -258,6 +260,7 @@ pListaAdyacencia FileManager::leerArchivo(string filename, deque <pListaAdyacenc
 				
 				cout << "Altura: ";
 				cout << nodoTemp->getGraphH() << std::endl;
+				cout << "-------------------------------------------------------------------\n" << endl;
 				
 				nodoNuevo = new Nodo;
 				nodoTemp->setSiguiente(nodoNuevo);
@@ -290,6 +293,8 @@ pListaAdyacencia FileManager::leerArchivo(string filename, deque <pListaAdyacenc
 				while (nodoTemp->getName() != ""){
 					
 					if (nodoTemp->getID() == entry1){
+						cout << "\n\t\t\tArista agregado:" << std::endl;
+						cout << "-------------------------------------------------------------------" << endl;
 						
 						if (nodoTemp->getPrimeraArista() == NULL){
 							
@@ -298,7 +303,7 @@ pListaAdyacencia FileManager::leerArchivo(string filename, deque <pListaAdyacenc
 							nodoTemp->getPrimeraArista()->setSiguiente(NULL);
 						}
 						
-						pArista tempArista = nodoTemp->getPrimeraArista();
+						tempArista = nodoTemp->getPrimeraArista();
 						
 						while (tempArista->getSiguiente() != NULL){
 								
@@ -311,10 +316,20 @@ pListaAdyacencia FileManager::leerArchivo(string filename, deque <pListaAdyacenc
 							
 						
 						while (nodoTemp2->getName() != ""){
-							
 							if (nodoTemp2->getID() == entry2){
 								tempArista->setDestino(nodoTemp2);
 								tempArista->setType(aristaType);
+								tempArista->setID2(entry2);
+								tempArista->setID1(entry1);
+								cout << "Tipo agregado al arista: ";
+								cout << tempArista->getType() << std::endl;
+								cout << "Numero de ID 1 agregado al arista: ";
+								cout << tempArista->getID1() << std::endl;
+								cout << "Numero de ID 2 agregado al arista:  ";
+								cout << tempArista->getID2() << std::endl;
+								cout << "Nombre de nodo destino agregado al arista: ";
+								cout << tempArista->getDestino()->getName() << std::endl;
+								cout << "-------------------------------------------------------------------\n" << endl;
 								break;
 							}
 							
@@ -336,14 +351,14 @@ pListaAdyacencia FileManager::leerArchivo(string filename, deque <pListaAdyacenc
 				temp = line.substr(startPos + 6);
 				int endPos = temp.find('"');
 				string finalString = temp.substr(0,endPos);
-				nodoTemp->getPrimeraArista()->setSubType(finalString);
+				tempArista->setSubType(finalString);
 				
 				line = lineOriginal;
 				startPos = line.find("value=");
 				temp = line.substr(startPos + 7);
 				endPos =  temp.find('"');
 				finalString = temp.substr(0,endPos);
-				nodoTemp->getPrimeraArista()->setValue(finalString);
+				tempArista->setValue(finalString);
 
 			}
 			
@@ -362,7 +377,8 @@ pListaAdyacencia FileManager::leerArchivo(string filename, deque <pListaAdyacenc
 			raizGrafo->setName(grafoName);
 		}
 			
-		std::cout << "\nRuta agregada. Datos de la ruta:\n" << std::endl;
+		std::cout << "\n\t\t\tRuta agregada:" << std::endl;
+		cout << "-------------------------------------------------------------------" << endl;
 		std::cout << "Nombre: ";
 		std::cout << raizGrafo->getName() << std::endl;
 		std::cout << "Org: ";
@@ -375,6 +391,7 @@ pListaAdyacencia FileManager::leerArchivo(string filename, deque <pListaAdyacenc
 		std::cout << raizGrafo->getImage() << std::endl;
 		std::cout << "Link: ";
 		std::cout << raizGrafo->getLink() << std::endl;
+		cout << "-------------------------------------------------------------------\n" << endl;
 		
 		//delete raizGrafo;
 		//raizGrafo = 0;

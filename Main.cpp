@@ -10,7 +10,7 @@ deque<pListaAdyacencia> listaRutas; //Lista principal de las rutas
 
 void mostrar_menu(){ // Esta funcion muestra el menu del programa
 	
-	cout << "\n\t\tMenú:\n================================" << endl;
+	cout << "\n\t\tMenú:\n========================================================" << endl;
 	cout << "1.- Registrar KGML" << endl;
 	cout << "2.- Ver rutas disponibles" << endl;
 	cout << "3.- Comparar rutas" << endl;
@@ -163,6 +163,40 @@ void ver_rutas(deque<pListaAdyacencia> listaRutas){
 				
 			cout << "Altura: ";
 			cout << nodoTemp->getGraphH() << std::endl;
+			
+			if (nodoTemp->getPrimeraArista() != NULL){
+				
+				pArista aristaTemp = nodoTemp->getPrimeraArista();
+				int contArista  = 1;
+				while (aristaTemp->getID1() != ""){
+					
+					cout << "\nDatos de arista ";
+					cout << contArista;
+					cout << ":" << std::endl;
+					
+					cout << "Entry ID 1 de arista: ";
+					cout << aristaTemp->getID1() << std::endl;
+					
+					cout << "Entry ID 2 de arista: ";
+					cout << aristaTemp->getID2() << std::endl;
+					
+					cout << "Tipo del arista: ";
+					cout << aristaTemp->getType() << std::endl;
+					
+					cout << "Subtipo del arista: ";
+					cout << aristaTemp->getSubType() << std::endl;
+					
+					cout << "Valor del arista: ";
+					cout << aristaTemp->getValue() << std::endl;
+					
+					cout << "Nombre del nodo destino del arista: ";
+					cout << aristaTemp->getDestino()->getName() << std::endl;
+					cout << "\n";
+					
+					contArista = contArista + 1;
+					aristaTemp = aristaTemp->getSiguiente();
+				}
+			}
 			cout << "-------------------------------------------------------------------\n" << endl;
 			
 			contNodo = contNodo + 1;
@@ -178,7 +212,100 @@ void ver_rutas(deque<pListaAdyacencia> listaRutas){
 
 void modo_inspeccionar(deque<pListaAdyacencia> listaRutas){
 	
+	pNodo tempNodo;
+	pArista tempArista;
+	pListaAdyacencia tempGrafo;
 	
+	cout << "\n|--------------------------------Reporte------------------------------------------------|" << endl;
+	
+	for (int i = 0; i < listaRutas.size(); i++){
+		pNodo nodoTemp = listaRutas.at(i)->getPrimero();
+		
+		int contador = i + 1;
+		
+		cout << "\n\t\t\tRuta " << std::flush;
+		cout << contador << std::flush;
+		cout << ":" << endl;
+		
+		cout << "-------------------------------------------------------------------" << endl;
+		cout << "Nombre: " << std::flush;
+		cout << listaRutas.at(i)->getName() << endl;
+		cout << "Org: " << std::flush;
+		cout << listaRutas.at(i)->getOrg() << endl;
+		cout << "Numero: " << std::flush;
+		cout << listaRutas.at(i)->getNumber() << endl;
+		cout << "Titulo: " << std::flush;
+		cout << listaRutas.at(i)->getTitle() << endl;
+		cout << "URL Imagen: " << std::flush;
+		cout << listaRutas.at(i)->getImage() << endl;
+		cout << "URL Ruta: " << std::flush;
+		cout << listaRutas.at(i)->getLink() << endl;
+		cout << "-------------------------------------------------------------------\n" << endl;
+		
+		cout << "Desea ver los nodos de esta ruta? S/N: " << std::flush;
+		string respuesta;
+		cin >> respuesta;
+		if (respuesta == "s" || respuesta == "S"){
+			int contNodo = 1;
+			while (nodoTemp->getName() != ""){
+				
+			cout << "\n\t\t\tNodo " << std::flush;
+			cout << contNodo << std::flush;
+			cout << ":" << endl;
+			
+			cout << "-------------------------------------------------------------------" << endl;
+			cout << "Numero de identificacion: ";
+			string strNodo = nodoTemp->getID();
+			cout << strNodo << std::endl;
+			
+			cout << "Nombre: ";
+			strNodo = nodoTemp->getName();
+			cout << strNodo << std::endl;
+				
+			cout << "Tipo: ";
+			cout << nodoTemp->getType() << std::endl;
+				
+			cout << "Reaccion: ";
+			cout << nodoTemp->getReaction() << std::endl;
+			
+			cout << "Link: ";
+			cout << nodoTemp->getLink() << std::endl;
+				
+			cout << "Nombre de graficos: ";
+			cout << nodoTemp->getGraphicsName() << std::endl;
+				
+			cout << "Color de primer plano: ";
+			cout << nodoTemp->getFgColor() << std::endl;
+				
+			cout << "Color de fondo: ";
+			cout << nodoTemp->getBgColor() << std::endl;
+				
+			cout << "Tipo grafico: ";
+			cout << nodoTemp->getGraphicsType() << std::endl;
+				
+			cout << "X: ";
+			cout << nodoTemp->getGraphX() << std::endl;
+				
+			cout << "Y: ";
+			cout << nodoTemp->getGraphY() << std::endl;
+				
+			cout << "Ancho: ";
+			cout << nodoTemp->getGraphW() << std::endl;
+				
+			cout << "Altura: ";
+			cout << nodoTemp->getGraphH() << std::endl;
+			
+			cout << "-------------------------------------------------------------------\n" << endl;
+			
+			contNodo = contNodo + 1;
+			nodoTemp = nodoTemp->getSiguiente();
+			}
+			
+		}
+		
+	}
+	
+	cout << "Se ha terminado de desplegar las rutas y sus datos.\n" << std::endl;
 }
 
 int main(){
