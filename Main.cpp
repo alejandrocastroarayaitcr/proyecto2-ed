@@ -217,95 +217,27 @@ void modo_inspeccionar(deque<pListaAdyacencia> listaRutas){
 	pListaAdyacencia tempGrafo;
 	
 	cout << "\n|--------------------------------Reporte------------------------------------------------|" << endl;
-	
-	for (int i = 0; i < listaRutas.size(); i++){
-		pNodo nodoTemp = listaRutas.at(i)->getPrimero();
-		
-		int contador = i + 1;
-		
-		cout << "\n\t\t\tRuta " << std::flush;
-		cout << contador << std::flush;
-		cout << ":" << endl;
-		
-		cout << "-------------------------------------------------------------------" << endl;
-		cout << "Nombre: " << std::flush;
-		cout << listaRutas.at(i)->getName() << endl;
-		cout << "Org: " << std::flush;
-		cout << listaRutas.at(i)->getOrg() << endl;
-		cout << "Numero: " << std::flush;
-		cout << listaRutas.at(i)->getNumber() << endl;
-		cout << "Titulo: " << std::flush;
-		cout << listaRutas.at(i)->getTitle() << endl;
-		cout << "URL Imagen: " << std::flush;
-		cout << listaRutas.at(i)->getImage() << endl;
-		cout << "URL Ruta: " << std::flush;
-		cout << listaRutas.at(i)->getLink() << endl;
-		cout << "-------------------------------------------------------------------\n" << endl;
-		
-		cout << "Desea ver los nodos de esta ruta? S/N: " << std::flush;
-		string respuesta;
-		cin >> respuesta;
-		if (respuesta == "s" || respuesta == "S"){
-			int contNodo = 1;
-			while (nodoTemp->getName() != ""){
-				
-			cout << "\n\t\t\tNodo " << std::flush;
-			cout << contNodo << std::flush;
-			cout << ":" << endl;
+	cout << "|                                                                                       |";
+	cout << "\n|-----------------------------listaRutas------------------------------------------------|" << endl;
+	cout << "| listaRutas: \t" << std::flush;
+	cout <<  sizeof(listaRutas);
+	cout << " bytes\t\t\tDireccion hexadecimal -> ";
+	cout << &listaRutas;
+	cout << " |" << endl;
+		for (int i = 0; i < listaRutas.size(); i++){
 			
-			cout << "-------------------------------------------------------------------" << endl;
-			cout << "Numero de identificacion: ";
-			string strNodo = nodoTemp->getID();
-			cout << strNodo << std::endl;
-			
-			cout << "Nombre: ";
-			strNodo = nodoTemp->getName();
-			cout << strNodo << std::endl;
-				
-			cout << "Tipo: ";
-			cout << nodoTemp->getType() << std::endl;
-				
-			cout << "Reaccion: ";
-			cout << nodoTemp->getReaction() << std::endl;
-			
-			cout << "Link: ";
-			cout << nodoTemp->getLink() << std::endl;
-				
-			cout << "Nombre de graficos: ";
-			cout << nodoTemp->getGraphicsName() << std::endl;
-				
-			cout << "Color de primer plano: ";
-			cout << nodoTemp->getFgColor() << std::endl;
-				
-			cout << "Color de fondo: ";
-			cout << nodoTemp->getBgColor() << std::endl;
-				
-			cout << "Tipo grafico: ";
-			cout << nodoTemp->getGraphicsType() << std::endl;
-				
-			cout << "X: ";
-			cout << nodoTemp->getGraphX() << std::endl;
-				
-			cout << "Y: ";
-			cout << nodoTemp->getGraphY() << std::endl;
-				
-			cout << "Ancho: ";
-			cout << nodoTemp->getGraphW() << std::endl;
-				
-			cout << "Altura: ";
-			cout << nodoTemp->getGraphH() << std::endl;
-			
-			cout << "-------------------------------------------------------------------\n" << endl;
-			
-			contNodo = contNodo + 1;
-			nodoTemp = nodoTemp->getSiguiente();
-			}
+			cout << "| pListaAdyacencia: \t" << std::flush;
+			cout <<  sizeof(listaRutas.at(i));
+			cout << " bytes\t\t\tDireccion hexadecimal -> ";
+			cout << &listaRutas.at(i);
+			cout << " |" << endl;
 			
 		}
-		
-	}
+		cout << "|---------------------------------------------------------------------------------------|" << endl;
+
+		cout << "\n";
 	
-	cout << "Se ha terminado de desplegar las rutas y sus datos.\n" << std::endl;
+	cout << "Se ha terminado de desplegar el reporte.\n" << std::endl;
 }
 
 int main(){
