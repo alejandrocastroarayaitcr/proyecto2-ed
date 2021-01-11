@@ -170,9 +170,8 @@ void ver_rutas(deque<pListaAdyacencia> listaRutas){
 				int contArista  = 1;
 				while (aristaTemp->getID1() != ""){
 					
-					cout << "\nDatos de arista ";
-					cout << contArista;
-					cout << ":" << std::endl;
+					cout << "\n\t\tDatos de arista ";
+					cout << contArista << std::endl;
 					
 					cout << "Entry ID 1 de arista: ";
 					cout << aristaTemp->getID1() << std::endl;
@@ -238,8 +237,8 @@ void modo_inspeccionar(deque<pListaAdyacencia> listaRutas){
 	for (int i = 0; i < listaRutas.size(); i++){
 		
 		cout << "|                                                                                       |";
-		cout << "\n|-----------------------------listaAdyacencia-------------------------------------------|" << endl;
-		cout << "| listaAdyacencia: \t" << std::flush;
+		cout << "\n|-----------------------------pListaAdyacencia------------------------------------------|" << endl;
+		cout << "| pListaAdyacencia: \t" << std::flush;
 		cout << sizeof(listaRutas.at(i));
 		cout << " bytes\t\t\tDireccion hexadecimal -> ";
 		cout << &listaRutas.at(i);
@@ -297,8 +296,86 @@ void modo_inspeccionar(deque<pListaAdyacencia> listaRutas){
 
 	cout << "|---------------------------------------------------------------------------------------|" << endl;
 	
-	
 	}
+	
+	for (int i = 0; i < listaRutas.size(); i++){
+		
+		pNodo nodoTemp = listaRutas.at(i)->getPrimero();
+		while (nodoTemp->getName() != ""){
+			
+			if (nodoTemp->getPrimeraArista() != NULL){
+				
+				pArista aristaTemp = nodoTemp->getPrimeraArista();
+				while (aristaTemp->getID1() != ""){
+					
+					cout << "|                                                                                       |";
+					cout << "\n|-----------------------------Arista----------------------------------------------------|" << endl;
+					
+					cout << "| Arista: \t" << std::flush;
+					cout << sizeof(tempArista);
+					cout << " bytes\t\t\t\tDireccion hexadecimal -> ";
+					cout << &tempArista;
+					cout << " | " <<  endl;
+					
+					cout << "| siguiente: \t" << std::flush;
+					cout << sizeof(tempArista->getSiguiente());
+					cout << " bytes\t\t\t\tDireccion hexadecimal -> ";
+					cout << tempArista->getSiguiente();
+					cout << " | " <<  endl;
+
+					cout << "| ID1: \t" << std::flush;
+					cout << sizeof(tempArista->getID1());
+					cout << " bytes\t\t\t\tDireccion hexadecimal -> ";
+					//string aristaString = tempArista->getID1();
+					//cout << &tempArista->getID1();
+					cout << " \t\t| " <<  endl;
+					
+					cout << "| ID2: \t" << std::flush;
+					cout << sizeof(tempArista->getID2());
+					cout << " bytes\t\t\t\tDireccion hexadecimal -> ";
+					//aristaString = tempArista->getID2();
+					//cout << &aristaString;
+					cout << " \t\t| " <<  endl;
+					
+					cout << "| type: \t" << std::flush;
+					cout << sizeof(tempArista->getType());
+					cout << " bytes\t\t\tDireccion hexadecimal -> ";
+					//aristaString = tempArista->getType();
+					//cout << &aristaString;
+					cout << " \t\t| " <<  endl;
+					
+					cout << "| subType: \t" << std::flush;
+					cout << sizeof(tempArista->getSubType());
+					cout << " bytes\t\t\tDireccion hexadecimal -> ";
+					//aristaString = tempArista->getSubType();
+					//cout << &aristaString;
+					cout << " \t\t| " <<  endl;
+					
+					cout << "| value: \t" << std::flush;
+					cout << sizeof(tempArista->getValue());
+					cout << " bytes\t\t\tDireccion hexadecimal -> ";
+					//aristaString = tempArista->getValue();
+					//cout << &aristaString;
+					cout << " \t\t| " <<  endl;
+					
+					cout << "| destino: \t" << std::flush;
+					cout << sizeof(tempArista->getDestino());
+					cout << " bytes\t\t\t\tDireccion hexadecimal -> ";
+					pNodo destinoArista = tempArista->getDestino();
+					cout << &destinoArista;
+					cout << " | " <<  endl;
+					
+					cout << "|---------------------------------------------------------------------------------------|" << endl;
+					
+					aristaTemp = aristaTemp->getSiguiente();
+				}
+			}
+			nodoTemp = nodoTemp->getSiguiente();
+		}
+		
+	}
+	
+	
 	
 	cout << "\n";
 	cout << "Se ha terminado de desplegar el reporte.\n" << std::endl;
