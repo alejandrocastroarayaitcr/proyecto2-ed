@@ -233,10 +233,74 @@ void modo_inspeccionar(deque<pListaAdyacencia> listaRutas){
 			cout << " |" << endl;
 			
 		}
-		cout << "|---------------------------------------------------------------------------------------|" << endl;
-
-		cout << "\n";
+	cout << "|---------------------------------------------------------------------------------------|" << endl;
 	
+	for (int i = 0; i < listaRutas.size(); i++){
+		
+		cout << "|                                                                                       |";
+		cout << "\n|-----------------------------listaAdyacencia-------------------------------------------|" << endl;
+		cout << "| listaAdyacencia: \t" << std::flush;
+		cout << sizeof(listaRutas.at(i));
+		cout << " bytes\t\t\tDireccion hexadecimal -> ";
+		cout << &listaRutas.at(i);
+		cout << " | " <<  endl;
+		
+		cout << "| name: \t" << std::flush;
+		cout << sizeof(listaRutas.at(i)->getName());
+		cout << " bytes\t\t\tDireccion hexadecimal -> ";
+		string graphString = listaRutas.at(i)->getName();
+		cout << &graphString;
+		cout << " | " <<  endl;
+		
+		cout << "| org: \t\t" << std::flush;
+		cout << sizeof(listaRutas.at(i)->getOrg());
+		cout << " bytes\t\t\tDireccion hexadecimal -> ";
+		graphString = listaRutas.at(i)->getOrg();
+		cout << &graphString;
+		cout << " | " <<  endl;
+		
+		cout << "| number: \t" << std::flush;
+		cout << sizeof(listaRutas.at(i)->getNumber());
+		cout << " bytes\t\t\tDireccion hexadecimal -> ";
+		graphString = listaRutas.at(i)->getNumber();
+		cout << &graphString;
+		cout << " | " <<  endl;
+		
+		cout << "| title: \t" << std::flush;
+		cout << sizeof(listaRutas.at(i)->getTitle());
+		cout << " bytes\t\t\tDireccion hexadecimal -> ";
+		graphString = listaRutas.at(i)->getTitle();
+		cout << &graphString;
+		cout << " | " <<  endl;
+		
+		cout << "| image: \t" << std::flush;
+		cout << sizeof(listaRutas.at(i)->getImage());
+		cout << " bytes\t\t\tDireccion hexadecimal -> ";
+		graphString = listaRutas.at(i)->getImage();
+		cout << &graphString;
+		cout << " | " <<  endl;
+		
+		cout << "| link: \t" << std::flush;
+		cout << sizeof(listaRutas.at(i)->getLink());
+		cout << " bytes\t\t\tDireccion hexadecimal -> ";
+		graphString = listaRutas.at(i)->getLink();
+		cout << &graphString;
+		cout << " | " <<  endl;
+		
+		pNodo nodoTemp = listaRutas.at(i)->getPrimero();
+			
+			cout << "| primero: \t" << std::flush;
+			cout << sizeof(nodoTemp);
+			cout << " bytes\t\t\t\tDireccion hexadecimal -> ";
+			cout << &nodoTemp;
+			cout << " | " <<  endl;
+
+	cout << "|---------------------------------------------------------------------------------------|" << endl;
+	
+	
+	}
+	
+	cout << "\n";
 	cout << "Se ha terminado de desplegar el reporte.\n" << std::endl;
 }
 
