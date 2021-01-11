@@ -134,7 +134,7 @@ typedef ListaAdyacencia* pListaAdyacencia;
 class FileManager {
 public:
 	FileManager();
-	void leerArchivo(string filename, deque<pListaAdyacencia> lista);
+	pListaAdyacencia leerArchivo(string filename, deque<pListaAdyacencia> lista);
 };
 	
 #endif

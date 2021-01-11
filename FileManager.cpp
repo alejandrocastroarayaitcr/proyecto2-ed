@@ -8,7 +8,7 @@ FileManager::FileManager(){
 
 }
 
-void FileManager::leerArchivo(string filename, deque <pListaAdyacencia> lista){
+pListaAdyacencia FileManager::leerArchivo(string filename, deque <pListaAdyacencia> lista){
 	ifstream input;
 	
 	input.open(filename.c_str());
@@ -335,7 +335,6 @@ void FileManager::leerArchivo(string filename, deque <pListaAdyacencia> lista){
 			}
 			
 		}
-		lista.push_back(raizGrafo);
 			
 		std::cout << "\nRuta agregada. Datos de la ruta:\n" << std::endl;
 		std::cout << "Nombre: ";
@@ -351,8 +350,8 @@ void FileManager::leerArchivo(string filename, deque <pListaAdyacencia> lista){
 		std::cout << "Link: ";
 		std::cout << raizGrafo->getLink() << std::endl;
 		
-		delete raizGrafo;
-		raizGrafo = 0;
+		//delete raizGrafo;
+		//raizGrafo = 0;
 		
 		nodo = 0;
 		delete nodo;
@@ -366,5 +365,5 @@ void FileManager::leerArchivo(string filename, deque <pListaAdyacencia> lista){
 		myfile.close();
 	    input.close();
 	
-return;
+return raizGrafo;
 }

@@ -36,7 +36,10 @@ void registrarKGML(deque<pListaAdyacencia> lista){
 	cin >> filename;
 	
 	FileManager manager;
-	manager.leerArchivo(filename,lista);
+	pListaAdyacencia nuevoGrafo = manager.leerArchivo(filename,lista);
+	cout << listaRutas.size()  << endl;
+	listaRutas.push_back(nuevoGrafo);
+	cout << listaRutas.size() << endl;
 	
 }
 /*
@@ -84,6 +87,7 @@ void ver_rutas(deque<pListaAdyacencia> listaRutas){
 	
 	cout << "El tamano de la lista de grafos actual es: ";
 	cout << listaRutas.size() <<  endl; // prueba
+	cout << listaRutas.at(3)->getName() << endl;
 }
 
 int main(){
