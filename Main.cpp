@@ -88,6 +88,8 @@ void ver_rutas(deque<pListaAdyacencia> listaRutas){
 	cout << "Las rutas guardadas disponibles actualmente son:" << endl;
 	
 	for (int i = 0; i < listaRutas.size(); i++){
+		pNodo nodoTemp = listaRutas.at(i)->getPrimero();
+		
 		int contador = i + 1;
 		
 		cout << "\n\t\t\tRuta " << std::flush;
@@ -105,11 +107,78 @@ void ver_rutas(deque<pListaAdyacencia> listaRutas){
 		cout << listaRutas.at(i)->getTitle() << endl;
 		cout << "URL Imagen: " << std::flush;
 		cout << listaRutas.at(i)->getImage() << endl;
-		cout << "URL Ruta:" << std::flush;
+		cout << "URL Ruta: " << std::flush;
 		cout << listaRutas.at(i)->getLink() << endl;
 		cout << "-------------------------------------------------------------------\n" << endl;
 		
+		cout << "Desea ver los nodos de esta ruta? S/N: " << std::flush;
+		string respuesta;
+		cin >> respuesta;
+		if (respuesta == "s" || respuesta == "S"){
+			int contNodo = 1;
+			while (nodoTemp->getName() != ""){
+				
+			cout << "\n\t\t\tNodo " << std::flush;
+			cout << contNodo << std::flush;
+			cout << ":" << endl;
+			
+			cout << "-------------------------------------------------------------------" << endl;
+			cout << "Numero de identificacion: ";
+			string strNodo = nodoTemp->getID();
+			cout << strNodo << std::endl;
+			
+			cout << "Nombre: ";
+			strNodo = nodoTemp->getName();
+			cout << strNodo << std::endl;
+				
+			cout << "Tipo: ";
+			cout << nodoTemp->getType() << std::endl;
+				
+			cout << "Reaccion: ";
+			cout << nodoTemp->getReaction() << std::endl;
+			
+			cout << "Link: ";
+			cout << nodoTemp->getLink() << std::endl;
+				
+			cout << "Nombre de graficos: ";
+			cout << nodoTemp->getGraphicsName() << std::endl;
+				
+			cout << "Color de primer plano: ";
+			cout << nodoTemp->getFgColor() << std::endl;
+				
+			cout << "Color de fondo: ";
+			cout << nodoTemp->getBgColor() << std::endl;
+				
+			cout << "Tipo grafico: ";
+			cout << nodoTemp->getGraphicsType() << std::endl;
+				
+			cout << "X: ";
+			cout << nodoTemp->getGraphX() << std::endl;
+				
+			cout << "Y: ";
+			cout << nodoTemp->getGraphY() << std::endl;
+				
+			cout << "Ancho: ";
+			cout << nodoTemp->getGraphW() << std::endl;
+				
+			cout << "Altura: ";
+			cout << nodoTemp->getGraphH() << std::endl;
+			cout << "-------------------------------------------------------------------\n" << endl;
+			
+			contNodo = contNodo + 1;
+			nodoTemp = nodoTemp->getSiguiente();
+			}
+			
+		}
+		
 	}
+	
+	cout << "Se ha terminado de desplegar las rutas y sus datos.\n" << std::endl;
+}
+
+void modo_inspeccionar(deque<pListaAdyacencia> listaRutas){
+	
+	
 }
 
 int main(){
@@ -121,9 +190,9 @@ int main(){
 			switch ( opcion ) { // Usa un switch para elegir que sucede dependiendo de la opcion escogida
 				case '1': registrarKGML(listaRutas); break;
 				case '2': ver_rutas(listaRutas); break;
-				//case '3': comparar_rutas(); break;
+				//case '3': comparar_rutas(listaRutas); break;
 				//case '4': generar_grafico(); break;
-				//case '5': modo_inspeccionar(); break;
+				case '5': modo_inspeccionar(listaRutas); break;
 				case '6': exit(1);
 				default:
 					printf( "\nOpción no válida. Por favor intente de nuevo.\n" );
