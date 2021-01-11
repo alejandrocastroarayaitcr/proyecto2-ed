@@ -296,82 +296,83 @@ void modo_inspeccionar(deque<pListaAdyacencia> listaRutas){
 	
 	}
 	
-//	for (int i = 0; i < listaRutas.size(); i++){
+	for (int i = 0; i < listaRutas.size(); i++){
 		
-//		pNodo nodoTemp = listaRutas.at(i)->getPrimero();
-//		while (nodoTemp->getName() != ""){
+		pNodo nodoTemp = listaRutas.at(i)->getPrimero();
+		while (nodoTemp->getName() != ""){
 			
-	//		if (nodoTemp->getPrimeraArista() != NULL){
+			if (nodoTemp->getPrimeraArista() != NULL){
 				
-	//			pArista aristaTemp = nodoTemp->getPrimeraArista();
-	//			while (aristaTemp->getID1() != ""){
+				pArista aristaTemp = nodoTemp->getPrimeraArista();
+				while (aristaTemp->getID1() != ""){
 					
-	//				cout << "|                                                                                       |";
-	//				cout << "\n|-----------------------------Arista----------------------------------------------------|" << endl;
+					cout << "|                                                                                       |";
+					cout << "\n|-----------------------------Arista----------------------------------------------------|" << endl;
 					
-	//				cout << "| Arista: \t" << std::flush;
-	//				cout << sizeof(tempArista);
-	//				cout << " bytes\t\t\t\tDireccion hexadecimal -> ";
-	//				cout << tempArista;
-	//				cout << " | " <<  endl;
+					cout << "| Arista: \t" << std::flush;
+					cout << sizeof(tempArista);
+					cout << " bytes\t\t\t\tDireccion hexadecimal -> ";
+					cout << tempArista;
+					cout << " | " <<  endl;
 					
-	//				cout << "| siguiente: \t" << std::flush;
-	//				cout << sizeof(tempArista->getSiguiente());
-	//				cout << " bytes\t\t\t\tDireccion hexadecimal -> ";
-	//				cout << tempArista->getSiguiente();
-	//				cout << " | " <<  endl;
+					cout << "| siguiente: \t" << std::flush;
+					cout << sizeof(tempArista->getSiguiente());
+					cout << " bytes\t\t\t\tDireccion hexadecimal -> ";
+					cout << tempArista->getSiguiente();
+					cout << " | " <<  endl;
 
-	//				cout << "| ID1: \t" << std::flush;
-	//				cout << sizeof(tempArista->getID1());
-	//				cout << " bytes\t\t\t\tDireccion hexadecimal -> ";
-	//				string aristaString = tempArista->getID1();
-	//				cout << &aristaString;
-	//				cout << " | " <<  endl;
+					cout << "| ID1: \t" << std::flush;
+					cout << sizeof(tempArista->getID1());
+					cout << " bytes\t\t\t\tDireccion hexadecimal -> ";
+					//string aristaString = tempArista->getID1();
+					//cout << aristaString;
 					
-	//				cout << "| ID2: \t" << std::flush;
-	//				cout << sizeof(tempArista->getID2());
-	//				cout << " bytes\t\t\t\tDireccion hexadecimal -> ";
+					cout << " | " <<  endl;
+					
+					cout << "| ID2: \t" << std::flush;
+					cout << sizeof(tempArista->getID2());
+					cout << " bytes\t\t\t\tDireccion hexadecimal -> ";
 	//				aristaString = tempArista->getID2();
 	//				cout << &aristaString;
-	//				cout << " | " <<  endl;
+					cout << " | " <<  endl;
 					
-	//				cout << "| type: \t" << std::flush;
-	//				cout << sizeof(tempArista->getType());
-	//				cout << " bytes\t\t\tDireccion hexadecimal -> ";
+					cout << "| type: \t" << std::flush;
+					cout << sizeof(tempArista->getType());
+					cout << " bytes\t\t\tDireccion hexadecimal -> ";
 	//				aristaString = tempArista->getType();
 	//				cout << &aristaString;
-	//				cout << " | " <<  endl;
+					cout << " | " <<  endl;
 					
-	//				cout << "| subType: \t" << std::flush;
-	//				cout << sizeof(tempArista->getSubType());
-	//				cout << " bytes\t\t\tDireccion hexadecimal -> ";
+					cout << "| subType: \t" << std::flush;
+					cout << sizeof(tempArista->getSubType());
+					cout << " bytes\t\t\tDireccion hexadecimal -> ";
 	//				aristaString = tempArista->getSubType();
 	//				cout << &aristaString;
-	//				cout << " | " <<  endl;
+					cout << " | " <<  endl;
 					
-	//				cout << "| value: \t" << std::flush;
-	//				cout << sizeof(tempArista->getValue());
-	//				cout << " bytes\t\t\tDireccion hexadecimal -> ";
+					cout << "| value: \t" << std::flush;
+					cout << sizeof(tempArista->getValue());
+					cout << " bytes\t\t\tDireccion hexadecimal -> ";
 	//				aristaString = tempArista->getValue();
 	//				cout << &aristaString;
-	//				cout << " | " <<  endl;
+					cout << " | " <<  endl;
 					
-	//				cout << "| destino: \t" << std::flush;
-	//				cout << sizeof(tempArista->getDestino());
-	//				cout << " bytes\t\t\t\tDireccion hexadecimal -> ";
-	//				pNodo aristaDestino =  tempArista->getDestino();
-	//				cout << &aristaDestino;
-	//				cout << " | " <<  endl;
+					cout << "| destino: \t" << std::flush;
+					cout << sizeof(tempArista->getDestino());
+					cout << " bytes\t\t\t\tDireccion hexadecimal -> ";
+					pNodo aristaDestino =  tempArista->getDestino();
+					cout << &aristaDestino;
+					cout << " | " <<  endl;
 					
-	//				cout << "|---------------------------------------------------------------------------------------|" << endl;
+					cout << "|---------------------------------------------------------------------------------------|" << endl;
 					
-	//				aristaTemp = aristaTemp->getSiguiente();
-	//			}
-	//		}
-	//		nodoTemp = nodoTemp->getSiguiente();
-	//	}
+					aristaTemp = aristaTemp->getSiguiente();
+				}
+			}
+			nodoTemp = nodoTemp->getSiguiente();
+		}
 		
-	//}
+	}
 	
 	for (int i = 0; i < listaRutas.size(); i++){
 		
