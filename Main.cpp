@@ -37,9 +37,7 @@ void registrarKGML(deque<pListaAdyacencia> lista){
 	
 	FileManager manager;
 	pListaAdyacencia nuevoGrafo = manager.leerArchivo(filename,lista);
-	cout << listaRutas.size()  << endl;
 	listaRutas.push_back(nuevoGrafo);
-	cout << listaRutas.size() << endl;
 	
 }
 /*
@@ -85,9 +83,33 @@ void comparar_rutas(){
 
 void ver_rutas(deque<pListaAdyacencia> listaRutas){
 	
-	cout << "El tamano de la lista de grafos actual es: ";
+	cout << "\nLa cantidad de  rutas disponibles actualmente es: ";
 	cout << listaRutas.size() <<  endl; // prueba
-	cout << listaRutas.at(3)->getName() << endl;
+	cout << "Las rutas guardadas disponibles actualmente son:" << endl;
+	
+	for (int i = 0; i < listaRutas.size(); i++){
+		int contador = i + 1;
+		
+		cout << "\n\t\t\tRuta " << std::flush;
+		cout << contador << std::flush;
+		cout << ":" << endl;
+		
+		cout << "-------------------------------------------------------------------" << endl;
+		cout << "Nombre: " << std::flush;
+		cout << listaRutas.at(i)->getName() << endl;
+		cout << "Org: " << std::flush;
+		cout << listaRutas.at(i)->getOrg() << endl;
+		cout << "Numero: " << std::flush;
+		cout << listaRutas.at(i)->getNumber() << endl;
+		cout << "Titulo: " << std::flush;
+		cout << listaRutas.at(i)->getTitle() << endl;
+		cout << "URL Imagen: " << std::flush;
+		cout << listaRutas.at(i)->getImage() << endl;
+		cout << "URL Ruta:" << std::flush;
+		cout << listaRutas.at(i)->getLink() << endl;
+		cout << "-------------------------------------------------------------------\n" << endl;
+		
+	}
 }
 
 int main(){
