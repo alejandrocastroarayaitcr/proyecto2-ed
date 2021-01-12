@@ -35,6 +35,9 @@ pListaAdyacencia FileManager::leerArchivo(string filename, deque <pListaAdyacenc
 		//pArista aristaTemp = raizGrafo->getPrimero()->getPrimeraArista();
 		fstream myfile;
 		
+		int contadorNodos = 0;
+		int contadorAristas = 0;
+		
 		myfile.open(filename);
 		
 		while(std::getline(myfile, line)){
@@ -217,50 +220,51 @@ pListaAdyacencia FileManager::leerArchivo(string filename, deque <pListaAdyacenc
 				finalString = temp.substr(0,endPos);
 				nodoTemp->setGraphH(stoi(finalString));
 				
-				cout << "\n\t\t\tNodo agregado:" << std::endl;
+				//cout << "Nodo agregado." << std::endl;
+				contadorNodos = contadorNodos  + 1;
 				
-				cout << "-------------------------------------------------------------------" << endl;
-				cout << "Numero de identificacion: ";
-				string strNodo = nodoTemp->getID();
-				cout << strNodo << std::endl;
+				//cout << "-------------------------------------------------------------------" << endl;
+				//cout << "Numero de identificacion: ";
+				//string strNodo = nodoTemp->getID();
+				//cout << strNodo << std::endl;
 				
-				cout << "Nombre: ";
-				strNodo = nodoTemp->getName();
-				cout << strNodo << std::endl;
+				//cout << "Nombre: ";
+				//strNodo = nodoTemp->getName();
+				//cout << strNodo << std::endl;
 				
-				cout << "Tipo: ";
-				cout << nodoTemp->getType() << std::endl;
+				//cout << "Tipo: ";
+				//cout << nodoTemp->getType() << std::endl;
 				
-				cout << "Reaccion: ";
-				cout << nodoTemp->getReaction() << std::endl;
+				//cout << "Reaccion: ";
+				//cout << nodoTemp->getReaction() << std::endl;
 				
-				cout << "Link: ";
-				cout << nodoTemp->getLink() << std::endl;
+				//cout << "Link: ";
+				//cout << nodoTemp->getLink() << std::endl;
 				
-				cout << "Nombre de graficos: ";
-				cout << nodoTemp->getGraphicsName() << std::endl;
+				//cout << "Nombre de graficos: ";
+				//cout << nodoTemp->getGraphicsName() << std::endl;
 				
-				cout << "Color de primer plano: ";
-				cout << nodoTemp->getFgColor() << std::endl;
+				//cout << "Color de primer plano: ";
+				//cout << nodoTemp->getFgColor() << std::endl;
 				
-				cout << "Color de fondo: ";
-				cout << nodoTemp->getBgColor() << std::endl;
+				//cout << "Color de fondo: ";
+				//cout << nodoTemp->getBgColor() << std::endl;
 				
-				cout << "Tipo grafico: ";
-				cout << nodoTemp->getGraphicsType() << std::endl;
+				//cout << "Tipo grafico: ";
+				//cout << nodoTemp->getGraphicsType() << std::endl;
 				
-				cout << "X: ";
-				cout << nodoTemp->getGraphX() << std::endl;
+				//cout << "X: ";
+				//cout << nodoTemp->getGraphX() << std::endl;
 				
-				cout << "Y: ";
-				cout << nodoTemp->getGraphY() << std::endl;
+				//cout << "Y: ";
+				//cout << nodoTemp->getGraphY() << std::endl;
 				
-				cout << "Ancho: ";
-				cout << nodoTemp->getGraphW() << std::endl;
+				//cout << "Ancho: ";
+				//cout << nodoTemp->getGraphW() << std::endl;
 				
-				cout << "Altura: ";
-				cout << nodoTemp->getGraphH() << std::endl;
-				cout << "-------------------------------------------------------------------\n" << endl;
+				//cout << "Altura: ";
+				//cout << nodoTemp->getGraphH() << std::endl;
+				//cout << "-------------------------------------------------------------------\n" << endl;
 				
 				nodoNuevo = new Nodo;
 				nodoTemp->setSiguiente(nodoNuevo);
@@ -293,8 +297,9 @@ pListaAdyacencia FileManager::leerArchivo(string filename, deque <pListaAdyacenc
 				while (nodoTemp->getName() != ""){
 					
 					if (nodoTemp->getID() == entry1){
-						cout << "\n\t\t\tArista agregado:" << std::endl;
-						cout << "-------------------------------------------------------------------" << endl;
+						//cout << "Arista agregado." << std::endl;
+						contadorAristas = contadorAristas + 1;
+						//cout << "-------------------------------------------------------------------" << endl;
 						
 						if (nodoTemp->getPrimeraArista() == NULL){
 							
@@ -321,15 +326,15 @@ pListaAdyacencia FileManager::leerArchivo(string filename, deque <pListaAdyacenc
 								tempArista->setType(aristaType);
 								tempArista->setID2(entry2);
 								tempArista->setID1(entry1);
-								cout << "Tipo agregado al arista: ";
-								cout << tempArista->getType() << std::endl;
-								cout << "Numero de ID 1 agregado al arista: ";
-								cout << tempArista->getID1() << std::endl;
-								cout << "Numero de ID 2 agregado al arista:  ";
-								cout << tempArista->getID2() << std::endl;
-								cout << "Nombre de nodo destino agregado al arista: ";
-								cout << tempArista->getDestino()->getName() << std::endl;
-								cout << "-------------------------------------------------------------------\n" << endl;
+								//cout << "Tipo agregado al arista: ";
+								//cout << tempArista->getType() << std::endl;
+								//cout << "Numero de ID 1 agregado al arista: ";
+								//cout << tempArista->getID1() << std::endl;
+								//cout << "Numero de ID 2 agregado al arista:  ";
+								//cout << tempArista->getID2() << std::endl;
+								//cout << "Nombre de nodo destino agregado al arista: ";
+								//cout << tempArista->getDestino()->getName() << std::endl;
+								//cout << "-------------------------------------------------------------------\n" << endl;
 								break;
 							}
 							
@@ -364,9 +369,15 @@ pListaAdyacencia FileManager::leerArchivo(string filename, deque <pListaAdyacenc
 			
 		}
 		char opcion;
+		cout << "\n-------------------------------------------------------------------" << endl;
+		std::cout << "Numero total de nodos de  la ruta: ";
+		std::cout << contadorNodos << std::endl;
+		std::cout << "Numero total de aristas de la ruta: ";
+		std::cout << contadorAristas << std::endl;
 		
-		std::cout << "\nNombre actual de la ruta agregada: " << std::flush;
+		std::cout << "Nombre actual de la ruta agregada: " << std::flush;
 		std::cout << raizGrafo->getName() << std::endl;
+		cout << "-------------------------------------------------------------------" << endl;
 		std::cout << "\nDesea modificar el nombre de la ruta agregada? S/N: " << std::flush;
 		cin >> opcion;
 		if (opcion == 's' || opcion == 'S'){
