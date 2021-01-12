@@ -1,4 +1,4 @@
-#include "Clases.h"
+#include "ListaAdyacencia.cpp"
 #include <fstream>
 #include <iostream>
 #include <string>

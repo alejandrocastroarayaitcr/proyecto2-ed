@@ -1,7 +1,4 @@
-#include "Clases.h"
-#include <iostream>
-#include <fstream>
-#include <string>
+#include "FileManager.cpp"
 
 using namespace std;
 
@@ -22,9 +19,9 @@ void mostrar_menu(){ // Esta funcion muestra el menu del programa
 	
 }
 
-pListaAdyacencia buscarRuta(string pNombre){
-	for(unsigned int i=0; i<listaRutas.size(); i++){
-		if(listaRutas.at(i)->getName() == pNombre)return listaRutas.at(i);
+pListaAdyacencia buscarRuta(deque<pListaAdyacencia> lista, string pNombre){
+	for(unsigned int i=0; i<lista.size(); i++){
+		if(lista.at(i)->getName() == pNombre)return lista.at(i);
 	}
 	return NULL;
 }
@@ -40,19 +37,20 @@ void registrarKGML(deque<pListaAdyacencia> lista){
 	listaRutas.push_back(nuevoGrafo);
 	
 }
-/*
-void comparar_rutas(){
+
+void comparar_rutas(deque<pListaAdyacencia> lista){
 	string nombreRuta1, nombreRuta2;
 	cout << "\nEscriba el nombre de la primera ruta: " << std::flush;
-	cin >> ruta1;
+	cin >> nombreRuta1;
 	cout << "\nEscriba el nombre de la segunda ruta: " << std::flush;
-	cin >> ruta2;
+	cin >> nombreRuta2;
 	pListaAdyacencia ruta1, ruta2;
-	ruta1 = buscarRuta(nombreRuta1);
-	ruta2 = buscarRuta(nombreRuta2);
+	ruta1 = buscarRuta(lista,nombreRuta1);
+	ruta2 = buscarRuta(lista,nombreRuta2);
 	if(ruta1 == NULL || ruta2 == NULL){
 		cout << "No se encontró ruta con el nombre ingresado" << endl;
 	}else{
+		cout << "Lineal" << endl;
 		deque<pNodo> rutaLineal1, rutaLineal2;
 		rutaLineal1 = ruta1->makeLineal();
 		rutaLineal2 = ruta2->makeLineal();
@@ -63,23 +61,24 @@ void comparar_rutas(){
 			rutaLineal2 = temp;
 		}
 		short int matriz[rutaLineal2.size()+1][rutaLineal1.size()+1];
-		matriz[0][0] = 0;
-		for(int i=1;i<rutaLineal1.size()){
-			matriz[0][i] = 0;
+		for(int x=0;x<rutaLineal2.size();x++){
+			for(int y=0;y<rutaLineal1.size();y++){
+				if(x==0 || y==0){
+					matriz[x][y] = 0;
+				}else{
+					if(rutaLineal1.at(y)->getName() == rutaLineal2.at(x)->getName()){
+						matriz[x][y] = max(matriz[x-1][y-1]+1,max(matriz[x-1][y]-2,matriz[x][y-1]-2));
+					}else{
+						matriz[x][y] = max(matriz[x-1][y-1]-1,max(matriz[x-1][y]-2,matriz[x][y-1]-2));
+					}
+				}
+			cout << matriz[x][y];
+			}
+		cout << endl;
 		}
-		for(int i=1;i<rutaLineal2.size()){
-			matriz[i][0] = 0;
-		}
-		
-		Algoritmo 1
-		  alineamiento
-		
+		//Algoritmo 2
 	}
-	Algoritmo 2
-	  
-	
 }
-*/
 
 void ver_rutas(deque<pListaAdyacencia> listaRutas){
 	
@@ -606,7 +605,7 @@ int main(){
 			switch ( opcion ) { // Usa un switch para elegir que sucede dependiendo de la opcion escogida
 				case '1': registrarKGML(listaRutas); break;
 				case '2': ver_rutas(listaRutas); break;
-				//case '3': comparar_rutas(listaRutas); break;
+				case '3': comparar_rutas(listaRutas); break;
 				case '4': generar_grafico(listaRutas); break;
 				case '5': modo_inspeccionar(listaRutas); break;
 				case '6': exit(1);
@@ -614,6 +613,6 @@ int main(){
 					printf( "\nOpción no válida. Por favor intente de nuevo.\n" );
 						break;
 		}
-	} while (opcion!='8');
+	} while (opcion!='6');
 
 }
