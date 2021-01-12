@@ -10,7 +10,7 @@ deque<pListaAdyacencia> listaRutas; //Lista principal de las rutas
 
 void mostrar_menu(){ // Esta funcion muestra el menu del programa
 	
-	cout << "\n\t\tMenú:\n========================================================" << endl;
+	cout << "\n=================================================\n\t\tMenú:\n=================================================" << endl;
 	cout << "1.- Registrar KGML" << endl;
 	cout << "2.- Ver rutas disponibles" << endl;
 	cout << "3.- Comparar rutas" << endl;
@@ -190,7 +190,6 @@ void ver_rutas(deque<pListaAdyacencia> listaRutas){
 					
 					cout << "Nombre del nodo destino del arista: ";
 					cout << aristaTemp->getDestino()->getName() << std::endl;
-					cout << "\n";
 					
 					contArista = contArista + 1;
 					aristaTemp = aristaTemp->getSiguiente();
@@ -559,6 +558,7 @@ void generar_grafico(deque<pListaAdyacencia> listaRutas){
 	
 	cout << "\n";
 	
+	cout << "------------------------------------------------------------Inicio de ruta------------------------------------------------------------------\n" << endl;
 	pListaAdyacencia grafo = listaRutas.at(rutaInt);
 	pNodo nodoTemp = grafo->getPrimero();
 	
@@ -590,11 +590,10 @@ void generar_grafico(deque<pListaAdyacencia> listaRutas){
 			
 			cout << "\n";
 		}
-		
 		cout << "\n";
 		nodoTemp = nodoTemp->getSiguiente();
 	}
-	
+	cout << "------------------------------------------------------------Fin de ruta---------------------------------------------------------------------\n" << endl;
 }
 
 int main(){
